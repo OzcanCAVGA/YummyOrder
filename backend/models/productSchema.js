@@ -11,15 +11,14 @@ const ProductSchema = {
         required: true
     },
     details: {
-        images: String, // Ürün resimlerinin URL'leri
-        videos: String, // Ürün videolarının URL'leri
+        images: String,
+        videos: String,
         productionStage: {
             type: String,
             enum: ['Siparis Alindi', 'Yapiliyor', 'Hazir', 'Servis Edildi'],
             default: 'Siparis Alindi'
         },
         ingredients: String,
-        // Diğer ürün detayları
     },
     price: {
         type: Number,

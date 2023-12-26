@@ -5,7 +5,11 @@ const ManagerSchema = {
     lastName: String,
     email: String,
     phoneNumber: String,
-    permissions: [{
+    permissions: [],
+};
+
+const Permissions = new mongoose.Schema(
+    {
         addProduct: { type: Boolean, default: false },
         removeProduct: { type: Boolean, default: false },
         updateProduct: { type: Boolean, default: false },
@@ -16,8 +20,7 @@ const ManagerSchema = {
         viewStats: { type: Boolean, default: false },
         paymentApproval: { type: Boolean, default: false }, // Ödeme onayı
         refundManagement: { type: Boolean, default: false }, // İade işlemleri
-    }],
-};
+    })
 
 mongoose.model("Manager", ManagerSchema, "managers")
 const managersSchema = mongoose.model("Manager");
