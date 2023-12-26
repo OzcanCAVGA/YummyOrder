@@ -7,16 +7,7 @@ const ReviewSchema = new mongoose.Schema(
         reviewerLastName: String,
         reviewerContent: String,
         reviewDate: { type: Date, default: Date.now },
-        replies: [
-            {
-                replierFirstName: String,
-                replierLastName: String,
-                replyContent: String,
-                replyDate: { type: Date, default: Date.now },
-
-
-            },
-        ],
+        replies: [RepliesSchema],
         rating:
         {
             type: Number,
@@ -24,6 +15,13 @@ const ReviewSchema = new mongoose.Schema(
             max: 5,
         }
     })
+
+const RepliesSchema = new mongoose.Schema({
+    replierFirstName: String,
+    replierLastName: String,
+    replyContent: String,
+    replyDate: { type: Date, default: Date.now },
+})
 
 const OrderSchema = new mongoose.Schema({
     productID: {
