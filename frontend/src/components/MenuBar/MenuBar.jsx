@@ -27,7 +27,7 @@ export const MenuBar = () => {
                 }}
             >
 
-                <ButtonGroup color="secondary" aria-label="Medium-sized button group">
+                <ButtonGroup aria-label="Medium-sized button group" sx={{color:"green"}}>
                     {buttons}
                 </ButtonGroup>
 

@@ -5,6 +5,10 @@ const ProductSchema = {
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
     category: {
         type: String,
         enum: ['Icecekler', 'Yiyecekler', 'Tatlilar', 'Sicak Yemekler', 'Kahvalti Menusu'],

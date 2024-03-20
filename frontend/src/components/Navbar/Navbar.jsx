@@ -17,6 +17,10 @@ const Navbar = () => {
         <Link to="/signup">
           <button className='w-32 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-green-500 bg-green-500  text-white '>Kayıt Ol</button>
         </Link>
+
+        <Link to="/admin">
+          <button className='w-32 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-red-500 bg-red-500  text-white '>ADMIN</button>
+        </Link>
       </div>
 
 
