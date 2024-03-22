@@ -7,6 +7,7 @@ import { SignUp } from './pages/SignUp/SignUp.jsx'
 import { Admin } from './pages/Admin/Admin.jsx'
 
 const App = () => {
+  document.title="Yummy Order"
   return (
     <>
       <BrowserRouter>
