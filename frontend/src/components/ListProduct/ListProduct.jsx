@@ -16,25 +16,55 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
+import { UrunSatiri } from './UrunSatiri';
+import { hexToRgb } from '@mui/material';
 
 
-function createData(name, description, category, price) {
-  return { name, description, category, price }
-}
 
 const rows = [
-  createData('Çilekli Cheesecake', "Taze çileklerle süslenmiş, kremsi ve lezzetli bir cheesecake", "Tatlılar", 24.99),
-  createData('Ispanaklı Börek', "Yumuşak yufka içinde nefis ıspanak dolgusu.", "Sıcak Yemekler", 12.50),
-  createData('Türk Kahvesi', "Geleneksel Türk kahvesi, köpüklü ve aromatik.", "İçecekler", 8.00),
-  createData('Margarita Pizza', "İnce hamur üzerine domates sosu, mozzarella peyniri ve taze fesleğen ile hazırlanan pizza.", "Sıcak Yemekler", 18.00),
-  createData('Çikolatalı Profiterol', "İçi kremalı, üzeri çikolata sosuyla kaplı profiterol.", "Tatlılar", 14.99),
-];
+  {
+    "_id": 1,
+    "name": "Çilekli Cheesecake",
+    "description": "Taze çileklerle süslenmiş, kremsi ve lezzetli bir cheesecake",
+    "category": "Tatlılar",
+    "price": 24.99,
+  },
+  {
+    "_id": 2,
+    "name": "Ispanaklı Börek",
+    "description": "Yumuşak yufka içinde nefis ıspanak dolgusu.",
+    "category": "Sıcak Yemekler",
+    "price": 12.50
+  },
+  {
+    "_id": 3,
+    "name": "Türk Kahvesi",
+    "description": "Geleneksel Türk kahvesi, köpüklü ve aromatik.",
+    "category": "İçecekler",
+    "price": 8.00
+  },
+  {
+    "_id": 4,
+    "name": "Margarita Pizza",
+    "description": "İnce hamur üzerine domates sosu, mozzarella peyniri ve taze fesleğen ile hazırlanan pizza.",
+    "category": "Sıcak Yemekler",
+    "price": 18.00
+  },
+  {
+    "_id": 5,
+    "name": "Çikolatalı Profiterol",
+    "description": "İçi kremalı, üzeri çikolata sosuyla kaplı profiterol.",
+    "category": "Tatlılar",
+    "price": 14.99
+  }
+]
+
 
 
 export const ListProduct = () => {
   const [open, setOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
-  const [editMode, setEditMode] = useState(false)
+
 
   const handleClickOpen = (product) => {
     setSelectedProduct(product);
@@ -55,7 +85,7 @@ export const ListProduct = () => {
   const handleEdit = (product) => {
     setSelectedProduct(product);
     setEditMode(true);
-    console.log("ListProduct icerisindeki editMode", editMode)
+
   };
 
   const handleEditClose = () => {
@@ -67,46 +97,26 @@ export const ListProduct = () => {
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+          <TableHead className='bg-slate-200'>
             <TableRow>
-              <TableCell>Ürün Adı</TableCell>
-              <TableCell align="right">İçerik</TableCell>
-              <TableCell align="right">Kategori</TableCell>
-              <TableCell align="right">Fiyat&nbsp;(₺)</TableCell>
+              <TableCell >Ürün Adı</TableCell>
+              <TableCell >İçerik</TableCell>
+              <TableCell >Kategori</TableCell>
+              <TableCell >Fiyat&nbsp;(₺)</TableCell>
+              <TableCell align='center'>Düzenle</TableCell>
+              <TableCell align='center'>Sil</TableCell>
 
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.description}</TableCell>
-                <TableCell align="right">{row.category}</TableCell>
-                <TableCell align="right">{row.price}₺</TableCell>
-                <TableCell align='right'>
-                  <IconButton aria-label='edit' onClick={() => handleEdit(row)}>
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton aria-label='delete' onClick={() => handleClickOpen(row)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell>
-                {editMode && (
-                  <EditProductForm
-                    row={row}
-                    editMode={editMode}
-                  />
-                )}
-              </TableRow>
+              <UrunSatiri urunId={row._id} name={row.name} description={row.description} category={row.category} price={row.price} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+
+
       <Dialog
         open={open}
         onClose={handleClose}

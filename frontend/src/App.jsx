@@ -1,4 +1,5 @@
 import React from 'react'
+import './Reset.css'
 import Navbar from './components/Navbar/Navbar.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home/Home.jsx'

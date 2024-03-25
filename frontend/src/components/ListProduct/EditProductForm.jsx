@@ -8,9 +8,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
 
-export const EditProductForm = ({row, editMode}) => {
+export const EditProductForm = ({ editOpen, name, description, category, price }) => {
 
-    const [open, setOpen] = React.useState(editMode);
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -22,7 +21,7 @@ export const EditProductForm = ({row, editMode}) => {
         <div>
 
             <Dialog
-                open={open}
+                open={handleClickOpen}
                 onClose={handleClose}
                 PaperProps={{
                     component: 'form',
