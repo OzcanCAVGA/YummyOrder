@@ -78,7 +78,6 @@ export const ListProduct = () => {
   }
 
   const handleDelete = () => {
-    // burada islemler yapilacak //
     console.log(`${selectedProduct.name} urunu kaldirildi`)
     setOpen(false);
   }

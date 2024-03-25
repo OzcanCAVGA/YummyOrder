@@ -6,8 +6,9 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { NewProduct } from '../../components/NewProduct/NewProduct';
 import { ListProduct } from '../../components/ListProduct/ListProduct';
-import {AddWaiter} from '../../components/AddWaiter/AddWaiter.jsx'
-import { RemoveWaiter } from '../../components/RemoveWaiter/RemoveWaiter.jsx';
+import { AddWaiter } from '../../components/AddWaiter/AddWaiter.jsx'
+import { ListWaiter } from '../../components/ListWaiter/ListWaiter.jsx';
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -64,25 +65,27 @@ export const Admin = () => {
                     aria-label="Vertical tabs example"
                     sx={{ borderRight: 1, borderColor: 'divider', mr: 10 }}
                 >
-                    <Tab label="Ürün ekle" {...a11yProps(0)} />
                     <Tab label="Ürün listele" {...a11yProps(1)} />
+                    <Tab label="Ürün ekle" {...a11yProps(0)} />
+                    <Tab label="Garson Listesi" {...a11yProps(3)} />
                     <Tab label="Garson Ekle" {...a11yProps(2)} />
-                    <Tab label="Garson çıkar" {...a11yProps(3)} />
+                    <Tab label="Masalara Listesi" {...a11yProps(6)} />
+                    <Tab label="Masalara Masa Ekle" {...a11yProps(6)} />
                     <Tab label="İstatistikleri gör" {...a11yProps(4)} />
                     <Tab label="Depoya bak" {...a11yProps(5)} />
-                    <Tab label="Item Seven" {...a11yProps(6)} />
                 </Tabs>
-                <TabPanel value={value} index={0}>
-                    <NewProduct />
-                </TabPanel>
                 <TabPanel value={value} index={1}>
                     <ListProduct />
                 </TabPanel>
+                <TabPanel value={value} index={0}>
+                    <NewProduct />
+                </TabPanel>
+
+                <TabPanel value={value} index={3}>
+                    <ListWaiter />
+                </TabPanel>
                 <TabPanel value={value} index={2}>
                     <AddWaiter />
-                </TabPanel>
-                <TabPanel value={value} index={3}>
-                    <RemoveWaiter />
                 </TabPanel>
                 <TabPanel value={value} index={4}>
                     Item Five
