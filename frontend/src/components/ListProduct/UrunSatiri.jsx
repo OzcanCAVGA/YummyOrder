@@ -11,10 +11,17 @@ export const UrunSatiri = ({ name, description, category, price, _id }) => {
 
     const [editOpen, setEditOpen] = useState(false);
 
+    const handleEditOpen = () => {
+        setEditOpen(true)
+    }
+    const handleEditClose = () => {
+        setEditOpen(false)
+    }
+
+
     const popconConfirm = (e) => {
         message.success('Ürün başarıyla silindi')
     }
-
 
     return (
         //butonlari urunSatirina ekle
@@ -32,10 +39,18 @@ export const UrunSatiri = ({ name, description, category, price, _id }) => {
             <TableCell >{category}</TableCell>
             <TableCell >{price}</TableCell>
             <TableCell>
-                <EditProductForm editOpen={editOpen} name={name} description={description} category={category} price={price} />
+                <IconButton onClick={handleEditOpen}>
+                    <EditIcon />
+                </IconButton>
 
-
-                <IconButton><EditIcon /></IconButton>
+                <EditProductForm
+                    open={editOpen}
+                    onClose={handleEditClose}
+                    name={name}
+                    description={description}
+                    category={category}
+                    price={price}
+                />
             </TableCell>
 
 
