@@ -69,22 +69,22 @@ export const Admin = () => {
                     <Tab label="Ürün ekle" {...a11yProps(0)} />
                     <Tab label="Garson Listesi" {...a11yProps(3)} />
                     <Tab label="Garson Ekle" {...a11yProps(2)} />
-                    <Tab label="Masalara Listesi" {...a11yProps(6)} />
-                    <Tab label="Masalara Masa Ekle" {...a11yProps(6)} />
+                    <Tab label="Masa Listesi" {...a11yProps(6)} />
+                    <Tab label="Masa Ekle" {...a11yProps(6)} />
                     <Tab label="İstatistikleri gör" {...a11yProps(4)} />
                     <Tab label="Depoya bak" {...a11yProps(5)} />
                 </Tabs>
-                <TabPanel value={value} index={1}>
+                <TabPanel value={value} index={0}>
                     <ListProduct />
                 </TabPanel>
-                <TabPanel value={value} index={0}>
+                <TabPanel value={value} index={1}>
                     <NewProduct />
                 </TabPanel>
 
-                <TabPanel value={value} index={3}>
+                <TabPanel value={value} index={2}>
                     <ListWaiter />
                 </TabPanel>
-                <TabPanel value={value} index={2}>
+                <TabPanel value={value} index={3}>
                     <AddWaiter />
                 </TabPanel>
                 <TabPanel value={value} index={4}>
