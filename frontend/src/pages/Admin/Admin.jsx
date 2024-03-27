@@ -8,6 +8,7 @@ import { NewProduct } from '../../components/NewProduct/NewProduct';
 import { ListProduct } from '../../components/ListProduct/ListProduct';
 import { AddWaiter } from '../../components/AddWaiter/AddWaiter.jsx'
 import { ListWaiter } from '../../components/ListWaiter/ListWaiter.jsx';
+import { TableOverview } from '../../components/Tables/TableOverview.jsx';
 
 
 function TabPanel(props) {
@@ -88,7 +89,7 @@ export const Admin = () => {
                     <AddWaiter />
                 </TabPanel>
                 <TabPanel value={value} index={4}>
-                    Item Five
+                    <TableOverview />
                 </TabPanel>
                 <TabPanel value={value} index={5}>
                     Item Six

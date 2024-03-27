@@ -1,9 +1,10 @@
 import React from 'react'
+import { TableCart } from './TableCart'
 
 const tables = [
     {
         "id": 1,
-        "name": "Table 1",
+        "name": "Celal Şengör",
         "status": "empty"
     },
     {
@@ -27,10 +28,17 @@ const tables = [
         "status": "empty"
     }
 ]
-
+// pages -> Admin -> Admin ->
+// TableOverview -> TableCart -> TableOrders
+// TableAddition 
+// TableEdit
 
 export const TableOverview = () => {
     return (
-        <div>TableOverview</div>
+        <div className='flex gap-3 max-w-screen-lg flex-wrap'> {
+            tables.map(table => (
+                <TableCart table={table} />
+            ))
+        } </div>
     )
 }
