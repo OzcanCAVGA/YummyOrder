@@ -18,6 +18,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import { UrunSatiri } from './UrunSatiri';
 import { hexToRgb } from '@mui/material';
+import { Admin } from '../../pages/Admin/Admin';
 
 
 

@@ -1,104 +1,41 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import { NewProduct } from '../../components/NewProduct/NewProduct';
 import { ListProduct } from '../../components/ListProduct/ListProduct';
 import { AddWaiter } from '../../components/AddWaiter/AddWaiter.jsx'
 import { ListWaiter } from '../../components/ListWaiter/ListWaiter.jsx';
 import { TableOverview } from '../../components/Tables/TableOverview.jsx';
+// import { TableAddition } from '../../components/Tables/TableAddition.jsx';
+import { Route, Routes } from 'react-router-dom';
+import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-    return {
-        id: `vertical-tab-${index}`,
-        'aria-controls': `vertical-tabpanel-${index}`,
-    };
-}
 
 export const Admin = () => {
 
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
     return (
-        <>
+        <div className='flex'>
 
-            <Box
-                sx={{ flexGrow: 1, bgcolor: 'secondary', display: 'flex', height: '91vh', mt: 2 }}
-            >
-                <Tabs
-                    orientation="vertical"
-                    variant="scrollable"
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="Vertical tabs example"
-                    sx={{ borderRight: 1, borderColor: 'divider', mr: 10 }}
-                >
-                    <Tab label="Ürün listele" {...a11yProps(1)} />
-                    <Tab label="Ürün ekle" {...a11yProps(0)} />
-                    <Tab label="Garson Listesi" {...a11yProps(3)} />
-                    <Tab label="Garson Ekle" {...a11yProps(2)} />
-                    <Tab label="Masa Listesi" {...a11yProps(6)} />
-                    <Tab label="Masa Ekle" {...a11yProps(6)} />
-                    <Tab label="İstatistikleri gör" {...a11yProps(4)} />
-                    <Tab label="Depoya bak" {...a11yProps(5)} />
-                </Tabs>
-                <TabPanel value={value} index={0}>
-                    <ListProduct />
-                </TabPanel>
-                <TabPanel value={value} index={1}>
-                    <NewProduct />
-                </TabPanel>
+            <Sidebar />
+            <div className="flex-grow p-4">
+                <div className="flex-grow p-4">
+                    <Routes>
+                        <Route exact path="/admin" element={<Admin />} />
+                        <Route path='product-list' element={<ListProduct />} />
+                        <Route path='product-new' element={<NewProduct />} />
+                        <Route path='waiter-list' element={<ListWaiter />} />
+                        <Route path='waiter-new' element={<AddWaiter />} />
+                        <Route path='tables-list' element={<TableOverview />} />
+                        {/* <Route path='table-new' element={<TableAddition />} /> */}
+                    </Routes>
+                </div>            
 
-                <TabPanel value={value} index={2}>
-                    <ListWaiter />
-                </TabPanel>
-                <TabPanel value={value} index={3}>
-                    <AddWaiter />
-                </TabPanel>
-                <TabPanel value={value} index={4}>
-                    <TableOverview />
-                </TabPanel>
-                <TabPanel value={value} index={5}>
-                    Item Six
-                </TabPanel>
-                <TabPanel value={value} index={6}>
-                    Item Seven
-                </TabPanel>
-            </Box>
-        </>
+            </div>
+
+
+
+        </div>
+
+
+
 
     )
 }
