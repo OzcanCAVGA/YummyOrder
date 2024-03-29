@@ -26,10 +26,10 @@ const Sidebar = () => {
                 <li className="px-6 py-3">
                     <Link to="tables-list">Masa listele</Link>
                 </li>
-                {/* <li className="px-6 py-3">
-                    <Link to="/table-new">Masa ekle</Link>
-                </li>
                 <li className="px-6 py-3">
+                    <Link to="table-new">Masa ekle</Link>
+                </li>
+                {/* <li className="px-6 py-3">
                     <Link to="/view-tatistics">İstatistikleri gör</Link>
                 </li> */}
             </ul>

@@ -4,7 +4,7 @@ import { ListProduct } from '../../components/ListProduct/ListProduct';
 import { AddWaiter } from '../../components/AddWaiter/AddWaiter.jsx'
 import { ListWaiter } from '../../components/ListWaiter/ListWaiter.jsx';
 import { TableOverview } from '../../components/Tables/TableOverview.jsx';
-// import { TableAddition } from '../../components/Tables/TableAddition.jsx';
+import { TableAddition } from '../../components/Tables/TableAddition.jsx';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 
@@ -24,9 +24,9 @@ export const Admin = () => {
                         <Route path='waiter-list' element={<ListWaiter />} />
                         <Route path='waiter-new' element={<AddWaiter />} />
                         <Route path='tables-list' element={<TableOverview />} />
-                        {/* <Route path='table-new' element={<TableAddition />} /> */}
+                        <Route path='table-new' element={<TableAddition />} />
                     </Routes>
-                </div>            
+                </div>
 
             </div>
 
