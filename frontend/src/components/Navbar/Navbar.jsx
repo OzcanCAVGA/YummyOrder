@@ -21,6 +21,9 @@ const Navbar = () => {
         <Link to="/admin">
           <button className='w-32 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-red-500 bg-red-500  text-white '>ADMIN</button>
         </Link>
+        <Link to="/waiter">
+          <button className='w-32 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-blue-500 bg-blue-500  text-white '>GARSON</button>
+        </Link>
       </div>
 
 

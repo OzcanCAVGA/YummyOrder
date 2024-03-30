@@ -8,6 +8,7 @@ import { SignUp } from './pages/SignUp/SignUp.jsx'
 import { Admin } from './pages/Admin/Admin.jsx'
 import { ListProduct } from './components/ListProduct/ListProduct.jsx'
 import { NewProduct } from './components/NewProduct/NewProduct.jsx'
+import { WaiterPanel } from './pages/Waiter/WaiterPanel.jsx'
 
 const App = () => {
   document.title = "Yummy Order"
@@ -19,6 +20,7 @@ const App = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/admin/*' element={<Admin />} />
+        <Route path='/waiter/*' element={<WaiterPanel />} />
       </Routes>
     </>
   )
