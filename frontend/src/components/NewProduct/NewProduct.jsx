@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Textarea from '@mui/joy/Textarea';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
@@ -53,8 +52,7 @@ export const NewProduct = () => {
                     required
                     id="outlined-required"
                     label="Ürün Adı"
-                    placeholder="Lazanya"
-                    sx={{ width: '30vw' }}
+                    placeholder="Lazanya" 
                 />
                 <TextField
                     required
@@ -62,10 +60,7 @@ export const NewProduct = () => {
                     select
                     label="Kategori"
                     defaultValue="Yiyecekler"
-                    sx={{ width: '30vw' }}
-
-
-                >
+>
                     {currencies.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
                             {option.label}

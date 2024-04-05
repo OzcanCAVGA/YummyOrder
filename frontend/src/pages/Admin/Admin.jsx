@@ -7,6 +7,7 @@ import { TableOverview } from '../../components/Tables/TableOverview.jsx';
 import { TableAddition } from '../../components/Tables/TableAddition.jsx';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
+import { TableEdit } from '../../components/Tables/TableEdit.jsx';
 
 
 export const Admin = () => {
@@ -25,6 +26,7 @@ export const Admin = () => {
                         <Route path='waiter-new' element={<AddWaiter />} />
                         <Route path='tables-list' element={<TableOverview />} />
                         <Route path='table-new' element={<TableAddition />} />
+                        <Route path='table-edit' element={<TableEdit />} />
                     </Routes>
                 </div>
 

@@ -5,12 +5,16 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 export const MenuCard = () => {
+
+    const imgUrl=`https://source.unsplash.com/random/${Math.floor(Math.random() * 101)}`;
+
     return (
         <div className='flex flex-row justify-around h-max'>
             <Card>
                 <CardMedia component="img"
-                    image='https://source.unsplash.com/random'
+                    image={imgUrl}
                     height='100'
 
                 />
@@ -23,7 +27,7 @@ export const MenuCard = () => {
                     </Typography>
                 </CardContent>
                 <CardActions className='flex justify-around'>
-                    <Button >Detaylar</Button>
+                    <Button ><Link to="/product-detail">Ürün Detayı</Link></Button>
                     <Button color='success'>Sepete Ekle</Button>
                 </CardActions>
             </Card>

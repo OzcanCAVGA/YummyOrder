@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const WSidebar = () => {
     return (
-        <div className="bg-gray-800 text-white min-w-56 h-screen flex flex-col">
+        <div className="bg-gray-800 m-3 rounded-lg text-white min-w-56 h-3/4 flex flex-col py-5">
             <h2 className="text-lg font-bold py-4 px-6">Garson</h2>
             <ul>
                 <li className="px-6 py-3">
