@@ -12,7 +12,6 @@ export const WaiterPanel = () => {
                     <Routes>
                         <Route exact path="/waiter" element={<WaiterPanel />} />
                         <Route path='tables-list' element={<TableOverview />} />
-
                     </Routes>
                 </div>
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../../assets/logo.png'
+import ContactsIcon from '@mui/icons-material/Contacts';
 import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
@@ -23,6 +24,9 @@ const Navbar = () => {
         </Link>
         <Link to="/waiter">
           <button className='w-32 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-blue-500 bg-blue-500  text-white '>GARSON</button>
+        </Link>
+        <Link to="/profile">
+          <button className='w-16 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-[#577E2C] bg-[#94C832]  text-white '><ContactsIcon /> </button>
         </Link>
       </div>
 

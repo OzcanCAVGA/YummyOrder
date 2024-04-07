@@ -104,7 +104,7 @@ export const ProductDetails = () => {
                     <Grid xs={5}>
                         <Product product={product.product} />
                     </Grid>
-                    <Grid xs={7} className="max-h-96 overflow-auto ">
+                    <Grid xs={7} className="max-h-96 overflow-auto">
                         {
                             product.comments.map(comment => {
                                 return <Comments comment={comment} />
