@@ -14,16 +14,18 @@ const ProductSchema = {
         enum: ['Icecekler', 'Yiyecekler', 'Tatlilar', 'Sicak Yemekler', 'Kahvalti Menusu'],
         required: true
     },
-    details: {
-        images: String,
-        videos: String,
-        productionStage: {
-            type: String,
-            enum: ['Siparis Alindi', 'Yapiliyor', 'Hazir', 'Servis Edildi'],
-            default: 'Siparis Alindi'
-        },
-        ingredients: String,
-    },
+    /* front end kisminda buralari al */
+    // details: {
+    //     images: String,
+    //     videos: String,
+    //     productionStage: {
+    //         type: String,
+    //         enum: ['Siparis Alindi', 'Yapiliyor', 'Hazir', 'Servis Edildi'],
+    //         default: 'Siparis Alindi'
+    //     },
+    //     ingredients: String,
+    // },
+    
     price: {
         type: Number,
         required: true,

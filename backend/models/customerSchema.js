@@ -1,6 +1,12 @@
 var mongoose = require("mongoose");
 const Product = require("./productSchema");
 
+const RepliesSchema = new mongoose.Schema({
+    replierFirstName: String,
+    replierLastName: String,
+    replyContent: String,
+    replyDate: { type: Date, default: Date.now },
+})
 const ReviewSchema = new mongoose.Schema(
     {
         reviewerFirstName: String,
@@ -15,14 +21,6 @@ const ReviewSchema = new mongoose.Schema(
             max: 5,
         }
     })
-
-const RepliesSchema = new mongoose.Schema({
-    replierFirstName: String,
-    replierLastName: String,
-    replyContent: String,
-    replyDate: { type: Date, default: Date.now },
-})
-
 const OrderSchema = new mongoose.Schema({
     productID: {
         type: mongoose.Schema.Types.ObjectId,
@@ -37,6 +35,7 @@ const CustomerSchema = {
         lastName: String,
         email: String,
         password: String,
+        telephoneNumber: String,
         createdDate: { type: Date, default: Date.now },
         permissions:
         {

@@ -7,6 +7,8 @@ import TableCell from '@mui/material/TableCell';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import {Popconfirm, message } from 'antd';
 import { EditProductForm } from './EditProductForm';
+
+
 export const UrunSatiri = ({ name, description, category, price, _id }) => {
 
     const [editOpen, setEditOpen] = useState(false);

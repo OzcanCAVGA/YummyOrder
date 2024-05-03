@@ -1,12 +1,6 @@
 var mongoose = require("mongoose");
-
-const ManagerSchema = {
-    firstName: String,
-    lastName: String,
-    email: String,
-    phoneNumber: String,
-    permissions: [],
-};
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 const Permissions = new mongoose.Schema(
     {
@@ -21,6 +15,22 @@ const Permissions = new mongoose.Schema(
         paymentApproval: { type: Boolean, default: false }, // Ödeme onayı
         refundManagement: { type: Boolean, default: false }, // İade işlemleri
     })
+
+const ManagerSchema = {
+    firstName: String,
+    lastName: String,
+    email: String,
+    phoneNumber: String,
+    permissions: [Permissions],
+};
+
+// ManagerSchema.methods.createPassword = (password) => {
+//     this.salt = crypto.randomBytes(16).toString("hex");
+//     this.hash = crypto
+//         .pbkdf2Sync(password, this.salt, 1000, 64, "sha512")
+//         .toString("hex");
+// }
+
 
 mongoose.model("Manager", ManagerSchema, "managers")
 const managersSchema = mongoose.model("Manager");

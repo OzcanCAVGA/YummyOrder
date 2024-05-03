@@ -11,7 +11,7 @@ const UserSidebar = () => {
                 </li>
 
                 <li className="px-6 py-3">
-                    <Link to="tables-list">Masa listele</Link>
+                    <Link to="order-history">Geçmiş Siparişlerim</Link>
                 </li>
                 {/* <li className="px-6 py-3">
             <Link to="/view-tatistics">İstatistikleri gör</Link>

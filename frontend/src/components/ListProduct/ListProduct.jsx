@@ -110,7 +110,12 @@ export const ListProduct = () => {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <UrunSatiri urunId={row._id} name={row.name} description={row.description} category={row.category} price={row.price} />
+              <UrunSatiri 
+              urunId={row._id} 
+              name={row.name} 
+              description={row.description} 
+              category={row.category} 
+              price={row.price} />
             ))}
           </TableBody>
         </Table>
