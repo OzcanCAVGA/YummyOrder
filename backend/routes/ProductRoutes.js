@@ -6,7 +6,13 @@ var productController = require('../controllers/ProductController');
 
 router
     .route("/admin/products/addproduct")
-    .post(productController.addProduct)
+    .post(productController.addProduct);
+
+router
+    .route("/admin/products/:productid")
+    .put(productController.productUpdate)
 
 
-module.exports = router;
+
+
+    module.exports = router;
