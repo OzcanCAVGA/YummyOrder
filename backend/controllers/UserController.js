@@ -1,4 +1,4 @@
-const managersSchema = require("../models/managerSchema");
+const UserSchema = require("../models/UserSchema");
 
 const getResponse = function (res, status, content) {
     res
@@ -24,7 +24,7 @@ const register = (req, res) => {
     if (!firstName || !lastName || !email || !password || !telephoneNumber) {
         getResponse(res, 400, { "hata": "Tüm alanlar gereklidir." })
     }
-    managersSchema.create({
+    UserSchema.create({
         firstName,
         lastName,
         email,

@@ -1,4 +1,4 @@
-const ProductSchema = require('../models/productSchema');
+const ProductSchema = require('../models/ProductSchema');
 
 const createResponse = function (res, status, content) {
     res
@@ -13,6 +13,8 @@ const addProduct = async (req, res) => {
     const description = req.body.description
     const category = req.body.category
     const price = req.body.price
+    const images = req.body.images
+
 
 
 
@@ -32,7 +34,7 @@ const addProduct = async (req, res) => {
                 name,
                 description,
                 category,
-                //  details,
+                images,
                 price,
 
             })
@@ -44,13 +46,14 @@ const addProduct = async (req, res) => {
     }
 }
 
-const productUpdate = async (req, res) => {
+const updateProduct = async (req, res) => {
     const productid = req.params.productid
 
     // otorite yapacaksin ileride {
     const name = req.body.name
     const description = req.body.description
     const category = req.body.category
+    const images = req.body.images
     const price = req.body.price
 
     if (!name || !description || !category || !price) {
@@ -63,6 +66,7 @@ const productUpdate = async (req, res) => {
             product.name = name;
             product.description = description;
             product.category = category;
+            product.images = req.body.images
             product.price = price;
 
             try {
@@ -80,8 +84,73 @@ const productUpdate = async (req, res) => {
     // }
 }
 
+const deleteProduct = async (req, res) => {
+
+    const productid = req.params.productid
+
+    try {
+        const product = await ProductSchema.deleteOne({ _id: productid })
+
+        if (product.deletedCount === 0) {
+            createResponse(res, 404, { "hata": "ürün bulunamadı." })
+        } else {
+            createResponse(res, 200, { "mesaj": "Ürün başarıyla silindi." });
+
+        }
+    } catch (error) {
+        createResponse(res, 400, error);
+
+    }
+
+}
+
+const searchProducts = async (req, res) => {
+    const product = req.body.product
+
+    try {
+        const products = await ProductSchema.find({
+            name: { $regex: product, $options: 'i' }
+        })
+        if (products.length === 0) {
+            createResponse(res, 404, { "hata": "Urun bulunamadı" })
+        } else {
+            createResponse(res, 200, products)
+        }
+    } catch (error) {
+        createResponse(res, 400, error)
+    }
+
+
+}
+
+const getProductById = async (req, res) => {
+    const productid = req.params.productid;
+    try {
+        const product = await ProductSchema.findById(productid)
+        if (!product) {
+            createResponse(res, 404, { "hata": "Ürün bulunamadı" })
+        } else {
+            createResponse(res, 200, product)
+        }
+    } catch (error) {
+        createResponse(res, 400, error);
+
+    }
+}
+
+const getProducts = async(req, res) =>{
+    try {
+        const products = await ProductSchema.find();
+        createResponse(res, 200, products)
+    } catch (error) {
+        createResponse(res, 400, error)
+    }
+}
+
 module.exports = {
     addProduct,
-    productUpdate,
-
+    updateProduct,
+    deleteProduct,
+    searchProducts,
+    getProductById,
 }
