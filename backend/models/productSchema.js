@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+const Comment = require("./CommentSchema")
 
 const ProductSchema = {
     name: {
@@ -14,6 +15,19 @@ const ProductSchema = {
         enum: ['Icecekler', 'Yiyecekler', 'Tatlilar', 'Sicak Yemekler', 'Kahvalti Menusu'],
         required: true
     },
+    images: String,
+    price: {
+        type: Number,
+        required: true,
+    },
+
+    comments:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Comment
+    }
+
+
+
     /* front end kisminda buralari al */
     // details: {
     //     images: String,
@@ -25,13 +39,11 @@ const ProductSchema = {
     //     },
     //     ingredients: String,
     // },
-    
-    price: {
-        type: Number,
-        required: true,
-    },
+
+
 };
 
-mongoose.model("Product", ProductSchema, "products")
-const productSchema = mongoose.model("Product");
-module.exports = productSchema;
+
+
+const Product = mongoose.model("Product", ProductSchema, "products")
+module.exports = Product;
