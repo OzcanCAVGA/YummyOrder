@@ -20,11 +20,11 @@ const TableSchema = {
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: User
+        ref: 'User'
     },
     order: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: Order,
+        ref: 'Order',
     },
 
 }

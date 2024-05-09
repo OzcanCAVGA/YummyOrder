@@ -6,11 +6,11 @@ const Table = require('./TableSchema')
 const OrderSchema = {
     product: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: Product
+        ref: 'Product'
     }],
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: User,
+        ref: 'User',
     },
     date: {
         type: Date,
@@ -24,7 +24,7 @@ const OrderSchema = {
 
     table: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: Table,
+        ref: 'Table',
     },
  
 }

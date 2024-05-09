@@ -23,15 +23,14 @@ const UserSchema = {
         require: true
     },
 
-
     orders: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: Order
+        ref: 'Order'
     },
 
     table: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: Table
+        ref: 'Table'
     },
     authority: {
         type: String,
@@ -41,8 +40,6 @@ const UserSchema = {
         type: mongoose.Schema.Types.ObjectId,
         ref: Comment
     },
-
-    // yorumlar
     createdDate: {
         type: Date,
         default: Date.now

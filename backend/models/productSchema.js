@@ -23,7 +23,7 @@ const ProductSchema = {
 
     comments:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: Comment
+        ref: 'Comment'
     }
 
 
@@ -45,5 +45,5 @@ const ProductSchema = {
 
 
 
-const Product = mongoose.model("Product", ProductSchema, "products")
+const Product = mongoose.model("Products", ProductSchema, "products")
 module.exports = Product;

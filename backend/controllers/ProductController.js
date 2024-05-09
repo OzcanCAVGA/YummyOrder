@@ -16,8 +16,6 @@ const addProduct = async (req, res) => {
     const images = req.body.images
 
 
-
-
     if (!name || !description || !category || !price) {
         createResponse(res, 400, { "hata": "Tüm alanlar doldurun." })
         return;
@@ -105,11 +103,11 @@ const deleteProduct = async (req, res) => {
 }
 
 const searchProducts = async (req, res) => {
-    const product = req.body.product
+    const product = req.query.product
 
     try {
         const products = await ProductSchema.find({
-            name: { $regex: product, $options: 'i' }
+            "name": { "$regex": product, "$options": "i" }
         })
         if (products.length === 0) {
             createResponse(res, 404, { "hata": "Urun bulunamadı" })
@@ -138,19 +136,19 @@ const getProductById = async (req, res) => {
     }
 }
 
-const getProducts = async(req, res) =>{
+const getProducts = async (req, res) => {
     try {
         const products = await ProductSchema.find();
-        createResponse(res, 200, products)
+        createResponse(res, 200, products);
     } catch (error) {
-        createResponse(res, 400, error)
+        createResponse(res, 400, error);
     }
 }
-
 module.exports = {
     addProduct,
     updateProduct,
     deleteProduct,
     searchProducts,
     getProductById,
+    getProducts
 }
