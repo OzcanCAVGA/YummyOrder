@@ -4,7 +4,7 @@ const Order = require("./OrderSchema")
 const Comment = require("./CommentSchema")
 
 const UserSchema = {
-    name: {
+    firstName: {
         type: String,
         require: true
     },
@@ -13,7 +13,7 @@ const UserSchema = {
         require: true
     },
     email: String,
-    telephoneNo: {
+    telephoneNumber: {
         type: String,
         require: true
     },
@@ -45,7 +45,6 @@ const UserSchema = {
         default: Date.now
     }
 }
-
 
 
 

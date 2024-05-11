@@ -11,7 +11,7 @@ const TableSchema = {
     },
     qrcode:{
         type: String,
-        unique: true
+        
     },
     status: {
         type: String,
