@@ -7,10 +7,9 @@ router
     .route("/admin/tables/addTable")
     .post(tableControler.addTable)
 
-    router
+router
     .route("/admin/tables/")
     .get(tableControler.getAllTables)
-
 
 
 router
@@ -30,5 +29,8 @@ router
     .route("/admin/tables/:tableid")
     .delete(tableControler.deleteTable)
 
+router
+    .route("/user/:tableid")
+    .put(tableControler.takeSeat)
 
-module.exports = router;
+    module.exports = router;

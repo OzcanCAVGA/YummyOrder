@@ -25,16 +25,16 @@ const UserSchema = {
 
     orders: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Order'
+        ref: Order
     },
 
     table: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Table'
+        ref: Table
     },
     authority: {
         type: String,
-        default: "customer"
+        default: 'customer'
     },
     comments: {
         type: mongoose.Schema.Types.ObjectId,

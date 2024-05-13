@@ -107,6 +107,33 @@ const changeStatus = async (req, res) => {
     }
 }
 
+const takeSeat = async (req, res) => {
+    const tableid = req.params.tableid
+    const userid = req.body.userid
+
+
+    try {
+        const table = await Table.findById(tableid);
+        try {
+            const user = await User.findById(userid)
+            table.user = user;
+            user.table = table;
+            table.status = "Dolu"
+            try {
+                await table.save()
+                await user.save()
+                createResponse(res, 200, table)
+            } catch (error) {
+                createResponse(res, 400, error);
+            }
+        } catch (error) {
+            createResponse(res, 400, error);
+        }
+    } catch (error) {
+        createResponse(res, 400, error);
+    }
+}
+
 const deleteTable = async (req, res) => {
     const tableid = req.params.tableid
 
@@ -144,6 +171,7 @@ module.exports = {
     getTableById,
     updateTable,
     changeStatus,
+    takeSeat,
     deleteTable,
     getAllTables,
 }
