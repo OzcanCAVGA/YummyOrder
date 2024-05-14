@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Table = require("./TableSchema")
 const Order = require("./OrderSchema")
-const Comment = require("./CommentSchema")
+
 
 const UserSchema = {
     firstName: {
@@ -35,10 +35,6 @@ const UserSchema = {
     authority: {
         type: String,
         default: 'customer'
-    },
-    comments: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: Comment
     },
     createdDate: {
         type: Date,

@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-const Comment = require("./CommentSchema")
 
 const ProductSchema = {
     name: {
@@ -20,12 +19,6 @@ const ProductSchema = {
         type: Number,
         required: true,
     },
-
-    comments:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
-    }
-
 
 
     /* front end kisminda buralari al */

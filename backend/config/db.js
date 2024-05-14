@@ -2,7 +2,6 @@ var mongoose = require('mongoose')
 var dbURI = process.env.DB_URI
 
 const User = require('../models/UserSchema');
-const Comment = require('../models/CommentSchema');
 const Product = require('../models/ProductSchema');
 const Order = require('../models/OrderSchema');
 const Table = require('../models/TableSchema');
@@ -10,7 +9,6 @@ const Table = require('../models/TableSchema');
 mongoose.connect(dbURI)
     .then(() => {
         User.createIndexes();
-        Comment.createIndexes();
         Product.createIndexes();
         Order.createIndexes();
         Table.createIndexes();
