@@ -33,4 +33,4 @@ router
     .route("/user/:tableid")
     .put(tableControler.takeSeat)
 
-    module.exports = router;
+module.exports = router;

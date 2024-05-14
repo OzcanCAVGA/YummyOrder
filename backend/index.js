@@ -6,6 +6,7 @@ const mongodb = require("./config/db");
 const UserRoute = require("../backend/routes/UserRoutes")
 const ProductRoutes = require("../backend/routes/ProductRoutes")
 const TableRoutes = require("../backend/routes/TableRoutes")
+const OrderRoutes = require("../backend/routes/OrderRoutes")
 
 
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/v1", UserRoute);
 app.use("/api/v1", TableRoutes);
 app.use("/api/v1", ProductRoutes);
+app.use("/api/v1", OrderRoutes);
 
 
 
