@@ -7,14 +7,7 @@ const createResponse = function (res, status, content) {
 }
 
 const addProduct = async (req, res) => {
-
-
-    const name = req.body.name
-    const description = req.body.description
-    const category = req.body.category
-    const price = req.body.price
-    const images = req.body.images
-
+    const { name, description, category, price, images } = req.body;
 
     if (!name || !description || !category || !price) {
         createResponse(res, 400, { "hata": "Tüm alanlar doldurun." })

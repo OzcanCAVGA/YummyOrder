@@ -2,6 +2,7 @@ const User = require("../models/UserSchema");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const secretKey = process.env.SECRET_KEY;
+const { createToken } = require('../utils/jwtUtilis')
 
 const createResponse = function (res, status, content) {
     res
@@ -13,44 +14,51 @@ const merhaba = (req, res) => {
     return;
 }
 
+
 const register = async (req, res) => {
 
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const email = req.body.email;
-    const password = req.body.password;
-    const telephoneNumber = req.body.telephoneNumber;
+    const { firstName, lastName, email, password, telephoneNumber } = req.body;
 
     if (!firstName || !lastName || !email || !password || !telephoneNumber) {
         getResponse(res, 400, { "hata": "Tüm alanlar gereklidir." })
     }
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = new User({ firstName, lastName, email, password: hashedPassword, telephoneNumber });
+        await user.save();
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ firstName, lastName, email, password: hashedPassword, telephoneNumber });
-    await user.save();
+        const token = createToken(user);
 
-    const token = jwt.sign({ _id: user._id, email }, secretKey, { expiresIn: '1h' });
-    res.status(201).send({ token, message: "Kullanıcı başarıyla oluşturuldu." })
-
+        res.status(201).send({ token, message: "Kullanıcı başarıyla oluşturuldu." })
+    } catch (error) {
+        res.status(500).json({ error: "Kullanıcı oluşturulamadı.", details: error.message });
+    }
 
 }
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
 
-    if (!user) {
-        return res.status(400).send({ message: "Email ya da şifre hatalı" })
+    if (!email || !password) {
+        return res.status(400).json({ error: "Email ve şifre gereklidir." })
     }
 
-    const isMatch = await bcrypt.compare(password, user.password)
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).send({ message: "Email ya da şifre hatalı" })
+        }
 
-    if (!isMatch) {
-        return res.status(400).send({ message: "Email ya da şifre hatalı" })
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (!isMatch) {
+            return res.status(400).json({ error: "Email ya da şifre hatalı." });
+        }
+
+        const token = createToken(user);
+        createResponse(res, 200, token)
+    } catch (error) {
+        createResponse(res, 500, { "Hata": "Giris yapılamadı ", details: error.message })
     }
-
-    const token = jwt.sign({ _id: user._id, email }, secretKey, { expiresIn: '1h' });
-    res.send({ token, message: 'Başarıyla giriş yapıldı.' })
 
 }
 

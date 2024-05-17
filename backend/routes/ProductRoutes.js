@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 const productSchema = require('../models/ProductSchema');
 var productController = require('../controllers/ProductController');
-
+const authenticateToken = require('../middlewares/authenticateToken');
+const authorizeAdmin = require('../middlewares/authorizeAdmin');
 
 router
     .route("/admin/products/addproduct")
-    .post(productController.addProduct);
+    .post(authenticateToken, authorizeAdmin, productController.addProduct);
 
 router
     .route("/admin/products/:productid")
