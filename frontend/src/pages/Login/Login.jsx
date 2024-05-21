@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext';
+
 
 export const Login = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleLogin = () => {
-        // Burada giriş işlemini gerçekleştirebilirsiniz
-        // Örneğin, kullanıcı adı ve şifre doğrulaması yapılabilir
-        if (username === 'admin' && password === 'password') {
-            // Başarılı giriş işlemi
-            console.log('Başarılı giriş');
-        } else {
-            // Başarısız giriş işlemi
-            setError('Kullanıcı adı veya şifre yanlış');
-        }
+    const handleLogin = async(e) => {
+        e.preventDefault()
+
+       try {
+        const response = await axios.post()
+       } catch (error) {
+        
+       }
     };
 
     return (

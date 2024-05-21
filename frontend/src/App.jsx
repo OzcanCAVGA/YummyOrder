@@ -8,11 +8,14 @@ import { Admin } from './pages/Admin/Admin.jsx'
 import { WaiterPanel } from './pages/Waiter/WaiterPanel.jsx'
 import { ProductDetails } from './pages/ProductDetails/ProductDetails.jsx'
 import { Profile } from './pages/Profile/Profile.jsx'
+import { AuthProvider } from './contexts/AuthContext.jsx';
+
+
 
 const App = () => {
   document.title = "Yummy Order"
   return (
-    <div>
+    <AuthProvider>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -23,7 +26,7 @@ const App = () => {
         <Route path='/waiter/*' element={<WaiterPanel />} />
         <Route path='/profile/*' element={<Profile />} />
       </Routes>
-    </div>
+    </AuthProvider>
   )
 }
 

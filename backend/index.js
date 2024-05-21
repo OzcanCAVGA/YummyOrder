@@ -8,6 +8,9 @@ const ProductRoutes = require("../backend/routes/ProductRoutes")
 const TableRoutes = require("../backend/routes/TableRoutes")
 const OrderRoutes = require("../backend/routes/OrderRoutes")
 
+app.use(cors({
+    origin: process.env.ALLOWED_SOURCE
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
