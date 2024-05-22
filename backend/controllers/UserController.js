@@ -55,7 +55,7 @@ const login = async (req, res) => {
         }
 
         const token = createToken(user);
-        createResponse(res, 200, token)
+        createResponse(res, 200, {"token":token})
     } catch (error) {
         createResponse(res, 500, { "Hata": "Giris yapılamadı ", details: error.message })
     }
