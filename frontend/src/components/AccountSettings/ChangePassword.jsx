@@ -42,7 +42,7 @@ export const ChangePassword = ({ open, onClose, oldPassword }) => {
                                 variant="standard"
                                 value={props.values.currentPassword}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             />
                             <Field
                                 as={TextField}

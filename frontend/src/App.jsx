@@ -24,6 +24,7 @@ const App = () => {
         <Route path='/signup' element={<SignUp />} />
         <Route path='/admin/*' element={<Admin />} />
         <Route path='/waiter/*' element={<WaiterPanel />} />
+       
         <Route path="/" element={<ProtectedRoutes />}>
           <Route path='/profile/*' element={<Profile />} />
         </Route>

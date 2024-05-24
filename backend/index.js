@@ -1,31 +1,32 @@
 require('dotenv').config();
-const cors = require("cors");
 
 const express = require("express");
-var app = express();
-const mongodb = require("./config/db");
+const cors = require("cors");
 
 const UserRoute = require("../backend/routes/UserRoutes")
 const ProductRoutes = require("../backend/routes/ProductRoutes")
 const TableRoutes = require("../backend/routes/TableRoutes")
 const OrderRoutes = require("../backend/routes/OrderRoutes")
-
-app.use(cors({
-    origin: "http://localhost:3000",
-    methods: 'GET,POST,DELETE,PUT', // izin verilen HTTP metotları
-    allowedHeaders: 'Content-Type,Authorization' // izin verilen başlıklar
-}));
+const mongodb = require("./config/db");
+var app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(cors({
+  origin: "http://localhost:3000",
+  methods: 'GET,POST,DELETE,PUT', // izin verilen HTTP metotları
+  allowedHeaders: 'Content-Type,Authorization' // izin verilen başlıklar
+}));
+
 app.use("/api/v1", UserRoute);
 app.use("/api/v1", TableRoutes);
 app.use("/api/v1", ProductRoutes);
 app.use("/api/v1", OrderRoutes);
 app.use(
-  '/api',
+  '/api/v1',
   (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 8080);
+    res.header('Access-Control-Allow-Origin', process.env.PORT);
     res.header(
       'Access-Control-Allow-Headers',
       'Origin, X-Requested-With, Content-Type, Accept, Authorization'
@@ -33,8 +34,11 @@ app.use(
     next();
   }
 );
-
-
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).json({ error: err.name + ': ' + err.message });
+  }
+});
 app.listen(process.env.PORT, function () {
-    console.log("Started app. on port %d", process.env.PORT);
+  console.log("Started app. on port %d", process.env.PORT);
 })

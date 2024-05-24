@@ -13,6 +13,12 @@ const loginIn = async (input) => {
     return response
 }
 
+const signUp = async (input) => {
+    const response = await axios.post("http://localhost:8080/api/v1/signup", input);
+    return response
+}
+
 export {
     loginIn,
+    signUp
 }

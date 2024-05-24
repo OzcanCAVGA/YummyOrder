@@ -47,7 +47,7 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                                 variant="standard"
                                 value={props.values.name}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             />
                             <TextField
                                 autoFocus
@@ -61,7 +61,7 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                                 variant="standard"
                                 value={props.values.description}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             />
                             <TextField
                                 autoFocus
@@ -76,7 +76,7 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                                 variant="standard"
                                 value={props.values.category}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             >
                                 <MenuItem value="Icecekler">Icecekler</MenuItem>
                                 <MenuItem value="Yiyecekler">Yiyecekler</MenuItem>
@@ -96,7 +96,7 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                                 variant="standard"
                                 value={props.values.price}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             />
                         </DialogContent>
                         <DialogActions>

@@ -34,7 +34,7 @@ export const EditWaiterForm = ({ open, onClose, firstName, lastName, phone, emai
                                 variant="standard"
                                 value={props.values.firstName}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             />
                             <TextField
                                 autoFocus
@@ -48,7 +48,7 @@ export const EditWaiterForm = ({ open, onClose, firstName, lastName, phone, emai
                                 variant="standard"
                                 value={props.values.lastName}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             />
                             <TextField
                                 autoFocus
@@ -62,7 +62,7 @@ export const EditWaiterForm = ({ open, onClose, firstName, lastName, phone, emai
                                 variant="standard"
                                 value={props.values.phone}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             />
 
                             <TextField
@@ -77,7 +77,7 @@ export const EditWaiterForm = ({ open, onClose, firstName, lastName, phone, emai
                                 variant="standard"
                                 value={props.values.email}
                                 onChange={props.handleChange}
-                                onBlur={props.handleBlur}
+                                handleBlur={props.handleBlur}
                             />
                         </DialogContent>
                         <DialogActions>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormik } from 'formik';
 import { loginIn } from '../../api/UserApi';
+import validationSchema from './validation';
 
 export const Login = () => {
     const { LoginIn } = useAuth();
@@ -18,7 +19,8 @@ export const Login = () => {
             } catch (error) {
                 bag.setErrors({ general: error.response.data.error })
             }
-        }
+        },
+        validationSchema: validationSchema
     })
 
     return (
@@ -35,22 +37,22 @@ export const Login = () => {
                             name='email'
                             type="email"
                             onChange={handleChange}
-                            onBlur={handleBlur}
+                            handleBlur={handleBlur}
                             value={values.email}
                             className="border
                         border-gray-400 rounded-md py-2 px-4 w-full" />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="password" className="block mb-2">Şifre</label>
-                        <input 
-                        label="password"
-                        type="password" 
-                        id="password" 
-                        name='password'
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password}
-                        className="border
+                        <input
+                            label="password"
+                            type="password"
+                            id="password"
+                            name='password'
+                            onChange={handleChange}
+                            handleBlur={handleBlur}
+                            value={values.password}
+                            className="border
                         border-gray-400 rounded-md py-2 px-4 w-full" />
                     </div>
                     <button type="submit" className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Giriş Yap</button>

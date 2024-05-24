@@ -17,10 +17,17 @@ const merhaba = (req, res) => {
 
 const register = async (req, res) => {
 
-    const { firstName, lastName, email, password, telephoneNumber } = req.body;
+
+    const firstName = req.body.firstName
+    const lastName = req.body.lastName
+    const email = req.body.email
+    const password = req.body.password
+    const telephoneNumber = req.body.phoneNumber
+
 
     if (!firstName || !lastName || !email || !password || !telephoneNumber) {
-        getResponse(res, 400, { "hata": "Tüm alanlar gereklidir." })
+        createResponse(res, 400, { "hata": "Tüm alanlar gereklidir." })
+        return
     }
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -55,7 +62,7 @@ const login = async (req, res) => {
         }
 
         const token = createToken(user);
-        createResponse(res, 200, {"token":token})
+        createResponse(res, 200, { "token": token })
     } catch (error) {
         createResponse(res, 500, { "Hata": "Giris yapılamadı ", details: error.message })
     }
@@ -82,7 +89,7 @@ const getAllUsers = async (req, res) => {
     try {
         console.log("burada 1")
         const users = await User.find();
-        createResponse(res, 200, users.json())
+        createResponse(res, 200, users)
     } catch (error) {
         createResponse(res, 400, error)
         console.log("burada 2")
