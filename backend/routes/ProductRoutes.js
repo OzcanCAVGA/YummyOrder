@@ -26,7 +26,7 @@ router
     .get(productController.getProductById)
 
 router
-    .route("/admin/products/getProducts")
+    .route("/products")
     .get(productController.getProducts)
 
 

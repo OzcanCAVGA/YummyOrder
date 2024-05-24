@@ -131,10 +131,12 @@ const getProductById = async (req, res) => {
 
 const getProducts = async (req, res) => {
     try {
-        const products = await ProductSchema.find();
+         const products = await ProductSchema.find();
+     
         createResponse(res, 200, products);
     } catch (error) {
         createResponse(res, 400, error);
+        console.log("burasi calisti")
     }
 }
 module.exports = {

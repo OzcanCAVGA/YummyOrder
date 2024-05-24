@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-export const MenuCard = () => {
+export const MenuCard = (data) => {
 
     const imgUrl=`https://source.unsplash.com/random/${Math.floor(Math.random() * 101)}`;
 

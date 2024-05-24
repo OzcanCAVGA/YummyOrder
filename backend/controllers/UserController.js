@@ -22,16 +22,16 @@ const register = async (req, res) => {
     const lastName = req.body.lastName
     const email = req.body.email
     const password = req.body.password
-    const telephoneNumber = req.body.phoneNumber
+    const phoneNumber = req.body.phoneNumber
 
 
-    if (!firstName || !lastName || !email || !password || !telephoneNumber) {
+    if (!firstName || !lastName || !email || !password || !phoneNumber) {
         createResponse(res, 400, { "hata": "Tüm alanlar gereklidir." })
         return
     }
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ firstName, lastName, email, password: hashedPassword, telephoneNumber });
+        const user = new User({ firstName, lastName, email, password: hashedPassword, phoneNumber });
         await user.save();
 
         const token = createToken(user);
@@ -100,9 +100,9 @@ const updateUser = async (req, res) => {
     const userid = req.params.userid;
 
     //otorite yapilacak{
-    const { firstName, lastName, email, telephoneNumber } = req.body
+    const { firstName, lastName, email, phoneNumber } = req.body
 
-    if (!firstName || !lastName || !email || !telephoneNumber) {
+    if (!firstName || !lastName || !email || !phoneNumber) {
         createResponse(res, 400, { "hata": "Tüm alanlar doldurun." })
         return;
     } else {
@@ -111,7 +111,7 @@ const updateUser = async (req, res) => {
             user.firstName = firstName;
             user.lastName = lastName;
             user.email = email;
-            user.telephoneNumber = telephoneNumber;
+            user.phoneNumber = phoneNumber;
             try {
                 await user.save()
                 createResponse(res, 200, user)
@@ -133,8 +133,11 @@ const deleteUser = async (req, res) => {
 
         if (user.deletedCount === 0) {
             createResponse(res, 404, { "hata": "Kullanıcı bulunamadı." })
+            return;
         } else {
             createResponse(res, 200, { "mesaj": "Kullanıcı başarıyla silindi." });
+            return;
+
 
         }
     } catch (error) {
