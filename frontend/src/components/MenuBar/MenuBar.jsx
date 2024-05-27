@@ -7,6 +7,7 @@ const buttons = [
     <Button key="one">Kahvalti</Button>,
     <Button key="two">Ana Yemek</Button>,
     <Button key="three">Icecekler</Button>,
+    <Button key="four">Salatalar</Button>,
 ];
 
 

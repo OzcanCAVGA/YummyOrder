@@ -95,6 +95,17 @@ const deleteProduct = async (req, res) => {
 
 }
 
+const categoryProducts = async (req, res) => {
+    const category = req.params.category
+
+    try {
+        const products = await ProductSchema.find({ category: category })
+        createResponse(res, 200, products)
+    } catch (error) {
+        createResponse(res, 404, error)
+    }
+}
+
 const searchProducts = async (req, res) => {
     const product = req.query.product
 
@@ -131,8 +142,8 @@ const getProductById = async (req, res) => {
 
 const getProducts = async (req, res) => {
     try {
-         const products = await ProductSchema.find();
-     
+        const products = await ProductSchema.find();
+
         createResponse(res, 200, products);
     } catch (error) {
         createResponse(res, 400, error);
@@ -144,6 +155,7 @@ module.exports = {
     updateProduct,
     deleteProduct,
     searchProducts,
+    categoryProducts,
     getProductById,
     getProducts
 }

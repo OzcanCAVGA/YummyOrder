@@ -9,10 +9,17 @@ const setAuth = () => {
 }
 
 const getAllProducts = async () => {
-    const { data } = await axios.get('http://localhost:8080/api/v1/admin/orders/view')
+    const { data } = await axios.get('http://localhost:8080/api/v1/products')
     return data;
 }
 
-export{
+const getProduct = async (productid) => {
+     const { data } = await axios.get(`http://localhost:8080/api/v1/products/product-detail/${productid}`);
+        return data;
+    
+}
+
+export {
     getAllProducts,
+    getProduct
 }

@@ -18,11 +18,15 @@ router
     .delete(productController.deleteProduct)
 
 router
+    .route("/admin/products/:category")
+    .get(productController.categoryProducts)
+
+router
     .route("/admin/products/searchProducts")
     .get(productController.searchProducts)
 
 router
-    .route("/admin/products/:productid")
+    .route("/products/product-detail/:productid")
     .get(productController.getProductById)
 
 router

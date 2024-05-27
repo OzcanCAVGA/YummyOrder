@@ -5,29 +5,31 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
-export const MenuCard = (data) => {
+import { Link, Route } from 'react-router-dom';
+export const MenuCard = ({id, name, description, category, price}) => {
 
-    const imgUrl=`https://source.unsplash.com/random/${Math.floor(Math.random() * 101)}`;
+    console.log(`/product-detail/${id}`)
 
+    //const imgUrl = product.product.images;
     return (
         <div className='flex flex-row justify-around h-max'>
             <Card>
                 <CardMedia component="img"
-                    image={imgUrl}
+                //    image={imgUrl}
                     height='100'
 
                 />
                 <CardContent>
                     <Typography variant='h5' component='div'>
-                        Lazanya
+                        {name}
                     </Typography>
                     <Typography variant='p' component='p'>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum perspiciatis officiis nihil sint a consectetur ab doloribus. Nam, placeat fugit.
+                        {description}
                     </Typography>
                 </CardContent>
                 <CardActions className='flex justify-around'>
-                    <Button ><Link to="/product-detail">Ürün Detayı</Link></Button>
+                    {/* <Button><Link to={`/product-detail/${product.product._id}`}>Ürün Detayı</Link></Button> */}
+                    <Link to={`/product-detail/${id}`}>Ürün Detayı</Link>
                     <Button color='success'>Sepete Ekle</Button>
                 </CardActions>
             </Card>
