@@ -8,9 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Link, Route } from 'react-router-dom';
 export const MenuCard = ({id, name, description, category, price}) => {
 
-    console.log(`/product-detail/${id}`)
 
-    //const imgUrl = product.product.images;
     return (
         <div className='flex flex-row justify-around h-max'>
             <Card>

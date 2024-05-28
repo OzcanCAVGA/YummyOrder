@@ -17,6 +17,10 @@ router
     .post(UserController.login)
 
 router
+    .route("/loggedInUser")
+    .get(authenticateToken, UserController.loggedInUser)
+
+router
     .route('/users/:userid')
     .get(UserController.getUserById)
 

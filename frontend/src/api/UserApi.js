@@ -18,7 +18,22 @@ const signUp = async (input) => {
     return response
 }
 
+const loggedInUser = async () => {
+    const response = await axios.get('http://localhost:8080/api/v1/loggedInUser', setAuth())
+    return response;
+}
+
+
+const getUser = async (id) => {
+    const response = await axios.get(`http://localhost:8080/api/v1/users/${id}`, setAuth())
+    return response
+}
+
+
+
 export {
     loginIn,
-    signUp
+    signUp,
+    getUser,
+    loggedInUser
 }

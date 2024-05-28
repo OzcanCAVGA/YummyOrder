@@ -69,6 +69,33 @@ const login = async (req, res) => {
 
 }
 
+const loggedInUser = async (req, res) => {
+    try {
+        if (!req.auth) {
+            console.log('User not authenticated. req.user:', req.auth);  // Debug: req.user yoksa log yazdır
+            return res.status(401).json({ error: 'User not authenticated.' });
+        }
+        console.log('Dogrulanmis kullanici(UserController): ', req.auth);
+        const userid = req.auth.userId;  // Burada userId kullanılıyor, payload'daki key kontrol edilmeli
+        if (!userid) {
+            console.log("Kullanici kimligi bulunamadi(UserController)")
+            return res.status(400).json({ error: "Kullanici kimligi bulunamadi" })
+        }
+        const user = await User.findById(userid)
+        if (!user) {
+            console.log("Kullanici bulunamadi.(UserController)")
+            return res.status(404).json({ error: "Kullanici bulunamadi" })
+        }
+        res.status(200).json(user)
+
+    } catch (error) {
+        console.log('Error:', error);  // Debug: Hata mesajını yazdır
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+
 const getUserById = async (req, res) => {
     const userid = req.params.userid
 
@@ -150,6 +177,7 @@ module.exports = {
     merhaba,
     register,
     login,
+    loggedInUser,
     getUserById,
     getAllUsers,
     updateUser,

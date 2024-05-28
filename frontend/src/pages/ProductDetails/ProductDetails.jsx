@@ -19,7 +19,6 @@ const Item = styled(Paper)(({ theme }) => ({
 export const ProductDetails = () => {
     const { productid } = useParams();
 
-    console.log("productDetails:::", productid)
     const { isLoading, error, data } = useQuery(["productDetails", productid], () => getProduct(productid))
     if (isLoading) {
         return <div>Loading...</div>;
@@ -28,7 +27,6 @@ export const ProductDetails = () => {
     if (error) {
         return <div>Error fetching data</div>;
     }
-    console.log("data:::::", data)
     return (
         <Grid container justifyContent="center" alignItems="center" style={{ height: '100vh' }}>
             <Box sx={{ flex: 1, maxWidth: '75%', justifyContent: 'center', alignContent: "center", backgroundColor: 'white', borderRadius: 5, padding: 5, boxShadow: 2, }}>

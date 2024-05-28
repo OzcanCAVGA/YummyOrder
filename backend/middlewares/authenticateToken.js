@@ -11,7 +11,7 @@ async function authenticateToken(req, res, next) {
 
     try {
         const decoded = await verifyToken(token);
-        req.user = decoded;
+        req.auth = decoded;
         next();
     } catch (error) {
         console.log("burada")
