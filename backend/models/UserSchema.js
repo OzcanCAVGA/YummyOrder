@@ -13,7 +13,8 @@ const UserSchema = {
         require: true
     },
     email: String,
-    telephoneNumber: {
+    
+    phoneNumber: {
         type: String,
         require: true
     },

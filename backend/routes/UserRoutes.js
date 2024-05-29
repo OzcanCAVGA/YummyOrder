@@ -20,25 +20,22 @@ router
     .route("/loggedInUser")
     .get(authenticateToken, UserController.loggedInUser)
 
-router
-    .route('/users/:userid')
-    .get(UserController.getUserById)
 
 router
     .route('/users/getallusers')
-    .get(UserController.getAllUsers)
+    .get(authenticateToken, UserController.getAllUsers)
 
 router
     .route('/users/:userid')
-    .get(UserController.getUserById)
+    .get(authenticateToken, UserController.getUserById)
 
 router
     .route('/users/:userid')
-    .post(UserController.updateUser)
+    .put(authenticateToken, UserController.updateUser)
 
 router
     .route('/users/:userid')
-    .delete(UserController.deleteUser)
+    .delete(authenticateToken, UserController.deleteUser)
 
 
 

@@ -29,11 +29,15 @@ const getUser = async (id) => {
     return response
 }
 
-
+const updateUser = async(id, input)=>{
+    const response = await axios.put(`http://localhost:8080/api/v1/users/${id}`, input, setAuth())
+    return response
+}
 
 export {
     loginIn,
     signUp,
     getUser,
-    loggedInUser
+    loggedInUser,
+    updateUser
 }

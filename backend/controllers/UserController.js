@@ -125,38 +125,41 @@ const getAllUsers = async (req, res) => {
 
 const updateUser = async (req, res) => {
     const userid = req.params.userid;
+    console.log("(UserController)userid::::::", userid)
+    console.log("(UserController)req.auth._id::::::::",req.auth.userId)
+    if (userid === req.auth.userId) {
+        const { firstName, lastName, email, phoneNumber } = req.body;
 
-    //otorite yapilacak{
-    const { firstName, lastName, email, phoneNumber } = req.body
+        if (!firstName || !lastName || !email || !phoneNumber) {
+            return createResponse(res, 400, { "hata": "Tüm alanlar doldurun." });
+        }
 
-    if (!firstName || !lastName || !email || !phoneNumber) {
-        createResponse(res, 400, { "hata": "Tüm alanlar doldurun." })
-        return;
-    } else {
         try {
             const user = await User.findById(userid);
+            if (!user) {
+                return createResponse(res, 404, { "hata": "Kullanıcı bulunamadı." });
+            }
+
             user.firstName = firstName;
             user.lastName = lastName;
             user.email = email;
             user.phoneNumber = phoneNumber;
-            try {
-                await user.save()
-                createResponse(res, 200, user)
-            } catch (error) {
-                createResponse(res, 400, error)
-            }
+
+            await user.save();
+            return createResponse(res, 200, user);
         } catch (error) {
-            createResponse(res, 400, error)
+            return createResponse(res, 500, { "hata": "Sunucu hatası." });
         }
+    } else {
+        return createResponse(res, 403, { "hata": "Yetkisiz erişim." });
     }
-    // }
-}
+};
 
 const deleteUser = async (req, res) => {
-    const userid = req.params.userid
+    const userid = req.params.userId
 
     try {
-        const user = await User.deleteOne({ _id: userid })
+        const user = await User.deleteOne({ userId: userid })
 
         if (user.deletedCount === 0) {
             createResponse(res, 404, { "hata": "Kullanıcı bulunamadı." })
@@ -169,7 +172,6 @@ const deleteUser = async (req, res) => {
         }
     } catch (error) {
         createResponse(res, 400, error);
-
     }
 }
 

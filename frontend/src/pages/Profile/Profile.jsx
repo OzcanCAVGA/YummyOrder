@@ -24,7 +24,7 @@ export const Profile = () => {
                 <div className="flex-grow p-4">
                     <Routes path="/" element={<ProtectedRoutes />}>
                         <Route exact path="/profile" element={<Profile />} />
-                        <Route path={`account-settings/:userid`} element={<AccountSettings />} />
+                        <Route path={`account-settings`} element={<AccountSettings />} />
                         <Route path="order-history" element={<OrderHistory />} />
                         {/* <Route path='tables-list' element={<TableOverview />} /> */}
                     </Routes>
