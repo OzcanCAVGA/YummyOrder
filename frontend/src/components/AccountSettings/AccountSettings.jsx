@@ -3,14 +3,14 @@ import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
-import { ChangePassword } from './ChangePassword';
+import {ChangePassword} from './ChangePassword';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { useAuth } from '../../contexts/AuthContext';
 import { useQuery, useQueryClient } from 'react-query';
 import { getUser, updateUser } from '../../api/UserApi';
 import { Formik } from 'formik';
-import validations from './Validation';
+import { validationSchema } from './Validation';
 
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -73,7 +73,7 @@ export const AccountSettings = () => {
             setSubmitting(false);
           }
         }}
-        validationSchema={validations}
+        validationSchema={validationSchema}
       >
         {({ handleSubmit, handleChange, handleBlur, values, errors, touched }) => (
           <form onSubmit={handleSubmit}>
@@ -142,7 +142,7 @@ export const AccountSettings = () => {
                     Şifreyi Değiştir
                   </Button>
                 </IconButton>
-                <ChangePassword open={editOpen} onClose={handleEditClose} oldPassword={"eskiSifre"} />
+                <ChangePassword open={editOpen} onClose={handleEditClose} />
               </Grid>
 
               <Grid item>

@@ -15,4 +15,18 @@ const validationSchema = Yup.object({
         .required('Telefon numarası gereklidir')
 });
 
-export default validationSchema;
+const changePasswordValidationSchema = Yup.object({
+    currentPassword: Yup.string().required('Eski şifre gereklidir.'),
+    newPassword: Yup.string()
+        .min(6, 'Yeni şifre en az 6 karakter olmalıdır.')
+        .required('Yeni şifre gereklidir.'),
+    confirmPassword: Yup.string()
+        .oneOf([Yup.ref('newPassword'), null], 'Şifreler eşleşmiyor')
+        .required('Şifre tekrarı gereklidir.')
+})
+
+
+export {
+    validationSchema,
+    changePasswordValidationSchema
+};

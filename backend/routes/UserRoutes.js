@@ -34,6 +34,10 @@ router
     .put(authenticateToken, UserController.updateUser)
 
 router
+    .route('/users/password/:userid')
+    .put(authenticateToken, UserController.updatePassword)
+
+router
     .route('/users/:userid')
     .delete(authenticateToken, UserController.deleteUser)
 

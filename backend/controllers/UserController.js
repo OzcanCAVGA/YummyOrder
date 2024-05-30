@@ -126,7 +126,7 @@ const getAllUsers = async (req, res) => {
 const updateUser = async (req, res) => {
     const userid = req.params.userid;
     console.log("(UserController)userid::::::", userid)
-    console.log("(UserController)req.auth._id::::::::",req.auth.userId)
+    console.log("(UserController)req.auth._id::::::::", req.auth.userId)
     if (userid === req.auth.userId) {
         const { firstName, lastName, email, phoneNumber } = req.body;
 
@@ -154,6 +154,38 @@ const updateUser = async (req, res) => {
         return createResponse(res, 403, { "hata": "Yetkisiz erişim." });
     }
 };
+
+const updatePassword = async (req, res) => {
+    const userid = req.auth.userId;
+    console.log("(UserController updatePassword)userId:::::::", userid)
+    const { oldPassword, newPassword } = req.body;
+
+    if (!oldPassword || !newPassword) {
+        return createResponse(res, 400, { "hata": "Hem eski şifre hem de yeni şifre gereklidir." });
+    }
+
+    try {
+        const user = await User.findById(userid)
+        if (!user) {
+            return createResponse(res, 404, { "hata": "Kullanıcı bulunamadı." });
+        }
+
+        const isMatch = await bcrypt.compare(oldPassword, user.password)
+        if (!isMatch) {
+            return createResponse(res, 400, { "hata": "Eski sifre hatali" })
+        } else if (isMatch) {
+            return createResponse(res, 200, { "mesaj": "eski sifre dogru" })
+        }
+
+        user.password = await bcrypt.hash(newPassword, 10);
+        await user.save();
+
+        return createResponse(res, 200, { "mesaj": "Sifre basariyla guncellendi" })
+    } catch (error) {
+        return createResponse(res, 500, { "hata": "Sunucu hatasi." })
+    }
+
+}
 
 const deleteUser = async (req, res) => {
     const userid = req.params.userId
@@ -183,5 +215,6 @@ module.exports = {
     getUserById,
     getAllUsers,
     updateUser,
+    updatePassword,
     deleteUser,
 }

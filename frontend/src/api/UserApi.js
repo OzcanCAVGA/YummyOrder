@@ -34,10 +34,17 @@ const updateUser = async(id, input)=>{
     return response
 }
 
+const updatePassword = async (id,input) => {
+    const response = await axios.put(`http://localhost:8080/api/v1/users/password/${id}`, input, setAuth());
+    return response;
+}
+
 export {
     loginIn,
     signUp,
     getUser,
     loggedInUser,
-    updateUser
+    updateUser,
+    updatePassword,
+
 }
