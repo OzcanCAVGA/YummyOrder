@@ -8,7 +8,7 @@ import { TableAddition } from '../../components/Tables/TableAddition.jsx';
 import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 import { TableEdit } from '../../components/Tables/TableEdit.jsx';
-
+import { Outlet } from 'react-router-dom';
 
 export const Admin = () => {
 
@@ -18,18 +18,9 @@ export const Admin = () => {
             <Sidebar />
             <div className="flex-grow p-4">
                 <div className="flex-grow p-4">
-                    <Routes>
-                        <Route exact path="/admin" element={<Admin />} />
-                        <Route path='product-list' element={<ListProduct />} />
-                        <Route path='product-new' element={<NewProduct />} />
-                        <Route path='waiter-list' element={<ListWaiter />} />
-                        <Route path='waiter-new' element={<AddWaiter />} />
-                        <Route path='tables-list' element={<TableOverview />} />
-                        <Route path='table-new' element={<TableAddition />} />
-                        <Route path='table-edit' element={<TableEdit />} />
-                    </Routes>
-                </div>
 
+                <Outlet />
+                </div>
             </div>
 
 

@@ -1,40 +1,39 @@
-import React, { useState } from 'react';
-import { Formik } from 'formik'
+import React from 'react';
+import { Formik } from 'formik';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { MenuItem, Typography } from '@mui/material';
+import { useQueryClient } from 'react-query';
+import { updateProduct } from '../../api/ProductApi';
+import validations from './Validation';
 
-
-export const EditProductForm = ({ open, onClose, name, description, category, price }) => {
-
+export const EditProductForm = ({ open, onClose, productId, name, description, category, price }) => {
+    const queryClient = useQueryClient();
 
     return (
-        <Dialog
-            open={open}
-            onClose={onClose}
-            fullWidth maxWidth={"sm"}
-        >
+        <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
             <Formik
-                initialValues={
-                    {
-                        name,
-                        description,
-                        category,
-                        price
+                initialValues={{ name, description, category, price }}
+                validationSchema={validations}
+                onSubmit={async (values, { setErrors }) => {
+                    try {
+                        await updateProduct(productId, values);
+                        queryClient.invalidateQueries(['products']);
+                        onClose();
+                    } catch (error) {
+                        setErrors({ general: error.response.data.hata || error.message });
+                        console.log("Error updating product:", error);
                     }
-                }
+                }}
             >
-                {props => (
-                    <form onSubmit={props.handleSubmit}>
+                {({ handleSubmit, handleBlur, handleChange, values, errors, touched }) => (
+                    <form onSubmit={handleSubmit}>
                         <DialogTitle>Ürün Düzenle</DialogTitle>
                         <DialogContent>
-                            <DialogContentText>
-                            </DialogContentText>
                             <TextField
                                 autoFocus
                                 required
@@ -45,12 +44,13 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                                 type="text"
                                 fullWidth
                                 variant="standard"
-                                value={props.values.name}
-                                onChange={props.handleChange}
-                                handleBlur={props.handleBlur}
+                                value={values.name}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={touched.name && Boolean(errors.name)}
+                                helperText={touched.name && errors.name}
                             />
                             <TextField
-                                autoFocus
                                 required
                                 margin="dense"
                                 id="description"
@@ -59,24 +59,26 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                                 type="text"
                                 fullWidth
                                 variant="standard"
-                                value={props.values.description}
-                                onChange={props.handleChange}
-                                handleBlur={props.handleBlur}
+                                value={values.description}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={touched.description && Boolean(errors.description)}
+                                helperText={touched.description && errors.description}
                             />
                             <TextField
-                                autoFocus
                                 required
                                 select
                                 margin="dense"
                                 id="category"
                                 name="category"
                                 label="Ürün kategorisi"
-                                type="category"
                                 fullWidth
                                 variant="standard"
-                                value={props.values.category}
-                                onChange={props.handleChange}
-                                handleBlur={props.handleBlur}
+                                value={values.category}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={touched.category && Boolean(errors.category)}
+                                helperText={touched.category && errors.category}
                             >
                                 <MenuItem value="Icecekler">Icecekler</MenuItem>
                                 <MenuItem value="Yiyecekler">Yiyecekler</MenuItem>
@@ -85,7 +87,6 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                                 <MenuItem value="Kahvalti Menusu">Kahvalti Menusu</MenuItem>
                             </TextField>
                             <TextField
-                                autoFocus
                                 required
                                 margin="dense"
                                 id="price"
@@ -94,18 +95,25 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                                 type="number"
                                 fullWidth
                                 variant="standard"
-                                value={props.values.price}
-                                onChange={props.handleChange}
-                                handleBlur={props.handleBlur}
+                                value={values.price}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                error={touched.price && Boolean(errors.price)}
+                                helperText={touched.price && errors.price}
                             />
                         </DialogContent>
+                        {errors.general && (
+                            <Typography color="error" align="center" sx={{ mt: 2 }}>
+                                {errors.general}
+                            </Typography>
+                        )}
                         <DialogActions>
                             <Button
-                                variant='contained'
-                                color='success'
-                                size='large'
+                                variant="contained"
+                                color="success"
+                                size="large"
                                 sx={{ width: "100%", textTransform: 'none' }}
-                                type='submit'
+                                type="submit"
                             >
                                 <Typography sx={{ fontWeight: "bold" }}>Güncelle</Typography>
                             </Button>
@@ -113,7 +121,6 @@ export const EditProductForm = ({ open, onClose, name, description, category, pr
                     </form>
                 )}
             </Formik>
-
-        </Dialog >
-    )
+        </Dialog>
+    );
 }

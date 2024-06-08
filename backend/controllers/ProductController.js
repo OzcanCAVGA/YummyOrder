@@ -38,43 +38,30 @@ const addProduct = async (req, res) => {
 }
 
 const updateProduct = async (req, res) => {
-    const productid = req.params.productid
-
-    // otorite yapacaksin ileride {
-    const name = req.body.name
-    const description = req.body.description
-    const category = req.body.category
-    const images = req.body.images
-    const price = req.body.price
+    const productid = req.params.productid;
+    const { name, description, category, price } = req.body;
 
     if (!name || !description || !category || !price) {
-        createResponse(res, 400, { "hata": "Tüm alanlar doldurun." })
+        createResponse(res, 400, { "hata": "Tüm alanları doldurun." });
         return;
     }
-    else {
-        try {
-            const product = await ProductSchema.findById(productid);
-            product.name = name;
-            product.description = description;
-            product.category = category;
-            product.images = req.body.images
-            product.price = price;
 
-            try {
-                await product.save()
-                createResponse(res, 200, product)
-            } catch (error) {
-                createResponse(res, 400, error);
-            }
+    try {
+        const updatedProduct = await ProductSchema.findByIdAndUpdate(
+            productid,
+            { name, description, category, price },
+            { new: true, runValidators: true }
+        );
 
-        } catch (error) {
-            createResponse(res, 400, error)
+        if (!updatedProduct) {
+            createResponse(res, 404, { "hata": "Ürün bulunamadı." });
+        } else {
+            createResponse(res, 200, updatedProduct);
         }
+    } catch (error) {
+        createResponse(res, 400, error);
     }
-
-    // }
 }
-
 const deleteProduct = async (req, res) => {
 
     const productid = req.params.productid

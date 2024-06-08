@@ -10,10 +10,7 @@ export const Profile = () => {
 
     const { user, loggedIn } = useAuth()
     console.log(user)
-    console.log("loggedin:::",loggedIn)
-    const ProtectedRoutes = () => {
-        return loggedIn ? <Outlet /> : <Navigate to="/" />
-    }
+    console.log("loggedin:::", loggedIn)
 
 
 
@@ -22,15 +19,10 @@ export const Profile = () => {
             <UserSidebar />
             <div className="flex-grow p-4">
                 <div className="flex-grow p-4">
-                    <Routes path="/" element={<ProtectedRoutes />}>
-                        <Route exact path="/profile" element={<Profile />} />
-                        <Route path={`account-settings`} element={<AccountSettings />} />
-                        <Route path="order-history" element={<OrderHistory />} />
-                        {/* <Route path='tables-list' element={<TableOverview />} /> */}
-                    </Routes>
+                
+        <Outlet />
                 </div>
-
-            </div>
+                </div>
 
         </div>
     )

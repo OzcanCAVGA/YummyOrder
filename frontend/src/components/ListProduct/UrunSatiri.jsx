@@ -5,12 +5,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import {Popconfirm, message } from 'antd';
+import { Popconfirm, message } from 'antd';
 import { EditProductForm } from './EditProductForm';
 
 
-export const UrunSatiri = ({ name, description, category, price, _id }) => {
-
+export const UrunSatiri = ({ name, description, category, price, productId }) => {
+    console.log("Urun Satirindayim::::::", productId)
     const [editOpen, setEditOpen] = useState(false);
 
     const handleEditOpen = () => {
@@ -45,6 +45,7 @@ export const UrunSatiri = ({ name, description, category, price, _id }) => {
                 <EditProductForm
                     open={editOpen}
                     onClose={handleEditClose}
+                    productId={productId}
                     name={name}
                     description={description}
                     category={category}

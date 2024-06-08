@@ -30,6 +30,11 @@ router
     .get(productController.getProductById)
 
 router
+    .route("/admin/product-list") // admin
+    .get(authenticateToken, authorizeAdmin, productController.getProducts)
+
+
+router
     .route("/products")
     .get(productController.getProducts)
 

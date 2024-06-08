@@ -6,17 +6,12 @@ import { Route, Routes } from 'react-router-dom'
 export const WaiterPanel = () => {
   return (
     <div className='flex'>
-        <WSidebar />
+      <WSidebar />
+      <div className="flex-grow p-4">
         <div className="flex-grow p-4">
-                <div className="flex-grow p-4">
-                    <Routes>
-                        <Route exact path="/waiter" element={<WaiterPanel />} />
-                        <Route path='tables-list' element={<TableOverview />} />
-                    </Routes>
-                </div>
-
-            </div>
-
+          <h1>Garson Paneli</h1>
+        </div>
+      </div>
     </div>
   )
 }

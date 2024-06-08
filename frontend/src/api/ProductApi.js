@@ -13,13 +13,24 @@ const getAllProducts = async () => {
     return data;
 }
 
-const getProduct = async (productid) => {
-     const { data } = await axios.get(`http://localhost:8080/api/v1/products/product-detail/${productid}`);
-        return data;
-    
+const getAllProductsAdmin = async () => {
+    const { data } = await axios.get('http://localhost:8080/api/v1/admin/product-list', setAuth())
+    return data
 }
 
+const getProduct = async (productid) => {
+    const { data } = await axios.get(`http://localhost:8080/api/v1/products/product-detail/${productid}`);
+    return data;
+
+}
+
+const updateProduct = async (productid, values) => {
+    const { data } = await axios.put(`http://localhost:8080/api/v1/admin/products/${productid}`, values, setAuth());
+    return data;
+}
 export {
     getAllProducts,
-    getProduct
+    getProduct,
+    getAllProductsAdmin,
+    updateProduct,
 }

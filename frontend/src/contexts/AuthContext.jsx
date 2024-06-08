@@ -9,22 +9,38 @@ const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : null);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
+    console.log("authContexteyim:::", user)
 
+    //     useEffect(() => {
+    //         (async () => {
+    //             try {
+    //                 if (loggedIn) {
+    //                     const user = await loggedInUser()
+    //                     setUser(user.data)
+    //                 }
+    //                 setToken(localStorage.getItem("token"))
+    //                 setLoggedIn(token ? true : false)
+    //                 setLoading(false)
+    //             }catch(error){
+    //                 setLoading(false)
+    //             }
+    //     })()
+    // },[])
     useEffect(() => {
         (async () => {
             try {
                 if (loggedIn) {
-                    const user = await loggedInUser()
+                    const user = await loggedInUser();
                     setUser(user.data)
                 }
-                setToken(localStorage.getItem("token"))
-                setLoggedIn(token ? true : false)
-                setLoading(false)
-            }catch(error){
-                setLoading(false)
+                setToken(localStorage.getItem("token"));
+                setLoggedIn(token ? true : false);
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
             }
-    })()
-},[])
+        })()
+    }, [])
 
 
     const LoginIn = async (response) => {

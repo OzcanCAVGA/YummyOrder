@@ -19,50 +19,20 @@ import Button from '@mui/material/Button';
 import { UrunSatiri } from './UrunSatiri';
 import { hexToRgb } from '@mui/material';
 import { Admin } from '../../pages/Admin/Admin';
-
-
-
-const rows = [
-  {
-    "_id": 1,
-    "name": "Çilekli Cheesecake",
-    "description": "Taze çileklerle süslenmiş, kremsi ve lezzetli bir cheesecake",
-    "category": "Tatlılar",
-    "price": 24.99,
-  },
-  {
-    "_id": 2,
-    "name": "Ispanaklı Börek",
-    "description": "Yumuşak yufka içinde nefis ıspanak dolgusu.",
-    "category": "Sıcak Yemekler",
-    "price": 12.50
-  },
-  {
-    "_id": 3,
-    "name": "Türk Kahvesi",
-    "description": "Geleneksel Türk kahvesi, köpüklü ve aromatik.",
-    "category": "İçecekler",
-    "price": 8.00
-  },
-  {
-    "_id": 4,
-    "name": "Margarita Pizza",
-    "description": "İnce hamur üzerine domates sosu, mozzarella peyniri ve taze fesleğen ile hazırlanan pizza.",
-    "category": "Sıcak Yemekler",
-    "price": 18.00
-  },
-  {
-    "_id": 5,
-    "name": "Çikolatalı Profiterol",
-    "description": "İçi kremalı, üzeri çikolata sosuyla kaplı profiterol.",
-    "category": "Tatlılar",
-    "price": 14.99
-  }
-]
-
+import { getAllProductsAdmin } from '../../api/ProductApi'
+import { useQuery } from 'react-query'
 
 
 export const ListProduct = () => {
+
+  const { isLoading, error, data } = useQuery(['products'], () => getAllProductsAdmin());
+  if (isLoading) {
+    return 'Yükleniyor'
+  }
+  if (error) return 'Hata!' + error.message
+
+  const products = data;
+
   const [open, setOpen] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
 
@@ -109,13 +79,13 @@ export const ListProduct = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <UrunSatiri 
-              urunId={row._id} 
-              name={row.name} 
-              description={row.description} 
-              category={row.category} 
-              price={row.price} />
+            {products.map((product) => (
+              <UrunSatiri
+                productId={product._id}
+                name={product.name}
+                description={product.description}
+                category={product.category}
+                price={product.price} />
             ))}
           </TableBody>
         </Table>
