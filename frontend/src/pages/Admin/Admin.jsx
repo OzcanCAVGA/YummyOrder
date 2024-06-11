@@ -9,26 +9,25 @@ import { Route, Routes } from 'react-router-dom';
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 import { TableEdit } from '../../components/Tables/TableEdit.jsx';
 import { Outlet } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext.jsx';
 
 export const Admin = () => {
+    React.useContext(useAuth)
+    const { user, loggedIn } = useAuth()
+    console.log(user)
+    console.log("loggedin:::", loggedIn)
+
+
 
     return (
         <div className='flex'>
-
             <Sidebar />
             <div className="flex-grow p-4">
                 <div className="flex-grow p-4">
-
-                <Outlet />
+                    <Outlet />
                 </div>
             </div>
-
-
-
         </div>
-
-
-
 
     )
 }

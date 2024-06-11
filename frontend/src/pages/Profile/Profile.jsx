@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import UserSidebar from './UserSidebar.jsx';
 import { Route, Routes, Navigate, Outlet } from 'react-router-dom'
 import { AccountSettings } from '../../components/AccountSettings/AccountSettings.jsx';
@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext.jsx';
 
 
 export const Profile = () => {
-
+    useContext(useAuth)
     const { user, loggedIn } = useAuth()
     console.log(user)
     console.log("loggedin:::", loggedIn)
@@ -19,10 +19,9 @@ export const Profile = () => {
             <UserSidebar />
             <div className="flex-grow p-4">
                 <div className="flex-grow p-4">
-                
-        <Outlet />
+                    <Outlet />
                 </div>
-                </div>
+            </div>
 
         </div>
     )

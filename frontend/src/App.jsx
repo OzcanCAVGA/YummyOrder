@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbar/Navbar.jsx'
 import { Outlet, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { Home } from './pages/Home/Home.jsx'
@@ -20,9 +20,9 @@ import { TableEdit } from './components/Tables/TableEdit.jsx'
 
 
 
+
 const App = () => {
   document.title = "Yummy Order"
-  //const { loggedIn } = useAuth()
 
   return (
     <>
@@ -35,7 +35,7 @@ const App = () => {
 
 
         <Route path='/' element={<ProtectedAdminRoutes />}>
-          <Route path='/admin' element={<Admin />} >
+          <Route path='admin' element={<Admin />} >
             <Route path='product-list' element={<ListProduct />} />
             <Route path='product-new' element={<NewProduct />} />
             <Route path='waiter-list' element={<AddWaiter />} />
@@ -43,6 +43,17 @@ const App = () => {
             <Route path='tables-list' element={<TableOverview />} />
             <Route path='table-new' element={<TableAddition />} />
             <Route path='table-edit' element={<TableEdit />} />
+          </Route>
+        </Route>
+
+
+
+        //TODO: YAPIYI PİECENTRALDAKİ GİBİ KURACAKSIN İÇ İÇE SONRA SAYFA YENİLEMEYİ DENE
+        <Route path="/" element={<ProtectedRoutes />}>
+          <Route path='profile' element={<Profile />} >
+            <Route path='account-settings' element={<AccountSettings />} />
+            <Route path='order-history' element={<OrderHistory />} />
+            <Route path='tables-list' element={<TableOverview />} />
           </Route>
         </Route>
 
@@ -54,29 +65,22 @@ const App = () => {
 
         </Route>
 
-
-        //TODO: YAPIYI PİECENTRALDAKİ GİBİ KURACAKSIN İÇ İÇE SONRA SAYFA YENİLEMEYİ DENE
-        <Route path="/" element={<ProtectedRoutes />}>
-          <Route path='profile' element={<Profile />} >
-            <Route path='account-settings' element={<AccountSettings />} />
-            <Route path='order-history' element={<OrderHistory />} />
-            <Route path='tables-list' element={<TableOverview />} />
-          </Route>
-        </Route>
       </Routes>
     </>
   )
 }
 
 const ProtectedRoutes = () => {
-  const { loggedIn } = useAuth()
+  const { loggedIn, user } = useAuth()
+  console.log("ProtectedRoutestayimmmm", user)
   return loggedIn ? <Outlet /> : <Navigate to="/login" />
 }
 
 
 const ProtectedAdminRoutes = () => {
-  const { loggedIn, user } = useAuth()
-  console.log("app.js teyim::::::",user.authority)
+  const { loggedIn } = useAuth()
+  const { user } = useAuth()
+  console.log("app.js teyim::::::", user.authority)
   return loggedIn && user.authority == 'admin' ? <Outlet /> : <Navigate to="/" />
 }
 

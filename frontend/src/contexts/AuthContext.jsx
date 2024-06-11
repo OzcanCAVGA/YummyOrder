@@ -4,12 +4,13 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token') ? true : false);
-    console.log(loggedIn)
-
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : null);
     const [user, setUser] = useState(null);
+    console.log(loggedIn)
+    console.log(user)
+
     const [loading, setLoading] = useState(true)
-    console.log("authContexteyim:::", user)
+    // console.log("authContexteyim:::", user)
 
     //     useEffect(() => {
     //         (async () => {
@@ -26,23 +27,23 @@ const AuthProvider = ({ children }) => {
     //             }
     //     })()
     // },[])
-    useEffect(() => {
-        (async () => {
-            try {
-                if (loggedIn) {
-                    const user = await loggedInUser();
-                    setUser(user.data)
+
+        useEffect(() => {
+            (async () => {
+                try {
+                    if (loggedIn) {
+                        const user = await loggedInUser();
+                        setUser(user.data)
+                    }
+                    setToken(localStorage.getItem("token"));
+                    setLoggedIn(token ? true : false);
+                    setLoading(false);
+                } catch (error) {
+                    setLoading(false);
                 }
-                setToken(localStorage.getItem("token"));
-                setLoggedIn(token ? true : false);
-                setLoading(false);
-            } catch (error) {
-                setLoading(false);
-            }
-        })()
-    }, [])
-
-
+            })()
+        }, [])
+    
     const LoginIn = async (response) => {
         setToken(response.token);
         localStorage.setItem('token', response.token)
