@@ -7,11 +7,13 @@ import TableCell from '@mui/material/TableCell';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Popconfirm, message } from 'antd';
 import { EditProductForm } from './EditProductForm';
-
+import { deleteProduct } from '../../api/ProductApi';
+import { useQuery, useQueryClient } from 'react-query'
 
 export const UrunSatiri = ({ name, description, category, price, productId }) => {
     console.log("Urun Satirindayim::::::", productId)
     const [editOpen, setEditOpen] = useState(false);
+    const queryClient = useQueryClient();
 
     const handleEditOpen = () => {
         setEditOpen(true)
@@ -23,6 +25,18 @@ export const UrunSatiri = ({ name, description, category, price, productId }) =>
 
     const popconConfirm = (e) => {
         message.success('Ürün başarıyla silindi')
+    }
+
+    const handleDelete = async (productId) => {
+        try {
+            await deleteProduct(productId)
+            queryClient.invalidateQueries(['products']);
+            message.success("Ürün başarıyla silindi")
+        } catch (error) {
+            console.error("Ürün silinirken hata oluştu", error)
+            message.error("Ürün silinirken bir hata oluştu")
+        }
+
     }
 
     return (
@@ -59,7 +73,7 @@ export const UrunSatiri = ({ name, description, category, price, productId }) =>
                 <Popconfirm
                     title="Ürünü sil"
                     description="Ürünü silmek istediğinden emin misin?"
-                    onConfirm={popconConfirm}
+                    onConfirm={() => handleDelete(productId)}
                     okText="Evet"
                     cancelText="Hayır"
                     icon={

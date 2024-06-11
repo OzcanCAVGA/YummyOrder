@@ -6,14 +6,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link, Route } from 'react-router-dom';
-export const MenuCard = ({id, name, description, category, price}) => {
+export const MenuCard = ({id, name, description, category, price,images}) => {
 
 
     return (
         <div className='flex flex-row justify-around h-max'>
             <Card>
                 <CardMedia component="img"
-                //    image={imgUrl}
+                    image={images}
                     height='100'
 
                 />

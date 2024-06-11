@@ -21,7 +21,7 @@ export const Menu = () => {
         <div className='flex justify-center w-8/12 m-auto mt-16'>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-700 w-full">
                 {data.map((item => {
-                    return <MenuCard id={item._id} name={item.name} description={item.description} category={item.category} price={item.price}/>
+                    return <MenuCard id={item._id} name={item.name} description={item.description} category={item.category} price={item.price} images = {item.images}/>
                 }))}
 
             </div>

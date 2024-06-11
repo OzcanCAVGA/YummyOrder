@@ -32,7 +32,7 @@ export const ProductDetails = () => {
             <Box sx={{ flex: 1, maxWidth: '75%', justifyContent: 'center', alignContent: "center", backgroundColor: 'white', borderRadius: 5, padding: 5, boxShadow: 2, }}>
                 <Grid container spacing={2}>
                     <Grid xs={5}>
-                        <Product name={data.name} description={data.description} category={data.category} price={data.price} />
+                        <Product name={data.name} description={data.description} category={data.category} price={data.price} images={data.images} />
                     </Grid>
 
                 </Grid>

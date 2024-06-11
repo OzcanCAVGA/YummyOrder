@@ -35,6 +35,10 @@ const addProduct = async (input) => {
     console.log("addproductAPI INPUT", input)
     return data;
 }
+const deleteProduct = async (productid) => {
+    const { data } = await axios.delete(`http://localhost:8080/api/v1/admin/products/${productid}`, setAuth());
+    return data;
+}
 
 
 export {
@@ -43,5 +47,6 @@ export {
     getAllProductsAdmin,
     updateProduct,
     addProduct,
+    deleteProduct
 
 }

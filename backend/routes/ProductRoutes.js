@@ -15,7 +15,7 @@ router
 
 router
     .route("/admin/products/:productid")
-    .delete(productController.deleteProduct)
+    .delete(authenticateToken, authorizeAdmin,productController.deleteProduct)
 
 router
     .route("/admin/products/:category")

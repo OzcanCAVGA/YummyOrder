@@ -20,12 +20,15 @@ import { UrunSatiri } from './UrunSatiri';
 import { hexToRgb } from '@mui/material';
 import { Admin } from '../../pages/Admin/Admin';
 import { getAllProductsAdmin } from '../../api/ProductApi'
-import { useQuery } from 'react-query'
-
+import { useQuery, useQueryClient } from 'react-query'
+import { deleteProduct } from '../../api/ProductApi';
 
 export const ListProduct = () => {
 
+
   const { isLoading, error, data } = useQuery(['products'], () => getAllProductsAdmin());
+
+
   if (isLoading) {
     return 'Yükleniyor'
   }
@@ -48,10 +51,7 @@ export const ListProduct = () => {
 
   }
 
-  const handleDelete = () => {
-    console.log(`${selectedProduct.name} urunu kaldirildi`)
-    setOpen(false);
-  }
+
   const handleEdit = (product) => {
     setSelectedProduct(product);
     setEditMode(true);
@@ -81,37 +81,17 @@ export const ListProduct = () => {
           <TableBody>
             {products.map((product) => (
               <UrunSatiri
+                key={product._id}
                 productId={product._id}
                 name={product.name}
                 description={product.description}
                 category={product.category}
-                price={product.price} />
+                price={product.price}/>
+                
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-
-
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'>
-        <DialogTitle id="alert-dialog-title">"{selectedProduct?.name}" urununu kaldirmak istediginizden emin misiniz?</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Bu işlemi geri alamazsınız.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => handleClose()} color="primary">
-            Vazgeç
-          </Button>
-          <Button onClick={() => handleDelete()} color="primary" autoFocus>
-            Kaldır
-          </Button>
-        </DialogActions>
-      </Dialog>
     </div >
   )
 }

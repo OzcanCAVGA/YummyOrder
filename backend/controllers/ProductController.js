@@ -65,6 +65,7 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
 
     const productid = req.params.productid
+    console.log("PRoductControllerdayim:::::", productid)
 
     try {
         const product = await ProductSchema.deleteOne({ _id: productid })
