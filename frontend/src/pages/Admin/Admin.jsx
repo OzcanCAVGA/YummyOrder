@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NewProduct } from '../../components/NewProduct/NewProduct';
+import NewProduct from '../../components/NewProduct/NewProduct.jsx';
 import { ListProduct } from '../../components/ListProduct/ListProduct';
 import { AddWaiter } from '../../components/AddWaiter/AddWaiter.jsx'
 import { ListWaiter } from '../../components/ListWaiter/ListWaiter.jsx';
