@@ -11,7 +11,7 @@ const UserSidebar = () => {
             <h2 className="text-lg font-bold py-4 px-6">Kullanıcı Panelı</h2>
             <ul>
                 <li className="px-6 py-3">
-                    <Link to="/profile/account-settings">Hesap Ayarları</Link>
+                    <Link to="account-settings">Hesap Ayarları</Link>
                 </li>
 
                 <li className="px-6 py-3">

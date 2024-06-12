@@ -5,14 +5,7 @@ const Order = require('./OrderSchema')
 const TableSchema = {
 
     name: String,
-    tableNumber: {
-        type: Number,
-        unique: true,
-    },
-    qrcode:{
-        type: String,
-        
-    },
+
     status: {
         type: String,
         enum: ['Boş', 'Dolu', 'Rezerv'],
@@ -26,6 +19,14 @@ const TableSchema = {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order',
     },
+    tableNumber: {
+        type: Number,
+        unique: true,
+    },
+    // qrcode:{
+    //     type: String,
+
+    // },
 
 }
 

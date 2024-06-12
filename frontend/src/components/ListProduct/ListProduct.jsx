@@ -19,49 +19,41 @@ import Button from '@mui/material/Button';
 import { UrunSatiri } from './UrunSatiri';
 import { hexToRgb } from '@mui/material';
 import { Admin } from '../../pages/Admin/Admin';
-import { getAllProductsAdmin } from '../../api/ProductApi'
-import { useQuery, useQueryClient } from 'react-query'
+import { getAllProductsAdmin } from '../../api/ProductApi';
+import { useQuery, useQueryClient } from 'react-query';
 import { deleteProduct } from '../../api/ProductApi';
 
 export const ListProduct = () => {
-
-
   const { isLoading, error, data } = useQuery(['products'], () => getAllProductsAdmin());
 
+  const [open, setOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [editMode, setEditMode] = useState(false); // Ensure this state is defined
 
   if (isLoading) {
-    return 'Yükleniyor'
+    return 'Yükleniyor';
   }
-  if (error) return 'Hata!' + error.message
+  if (error) return 'Hata!' + error.message;
 
   const products = data;
-
-  const [open, setOpen] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState(null)
-
 
   const handleClickOpen = (product) => {
     setSelectedProduct(product);
     setOpen(true);
-
-  }
+  };
 
   const handleClose = () => {
-    setOpen(false)
-
-  }
-
+    setOpen(false);
+  };
 
   const handleEdit = (product) => {
     setSelectedProduct(product);
     setEditMode(true);
-
   };
 
   const handleEditClose = () => {
     setEditMode(false);
   };
-
 
   return (
     <div>
@@ -69,13 +61,12 @@ export const ListProduct = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead className='bg-slate-200'>
             <TableRow>
-              <TableCell >Ürün Adı</TableCell>
-              <TableCell >İçerik</TableCell>
-              <TableCell >Kategori</TableCell>
-              <TableCell >Fiyat&nbsp;(₺)</TableCell>
+              <TableCell>Ürün Adı</TableCell>
+              <TableCell>İçerik</TableCell>
+              <TableCell>Kategori</TableCell>
+              <TableCell>Fiyat&nbsp;(₺)</TableCell>
               <TableCell align='center'>Düzenle</TableCell>
               <TableCell align='center'>Sil</TableCell>
-
             </TableRow>
           </TableHead>
           <TableBody>
@@ -86,12 +77,28 @@ export const ListProduct = () => {
                 name={product.name}
                 description={product.description}
                 category={product.category}
-                price={product.price}/>
-                
+                price={product.price}
+                onEdit={() => handleEdit(product)} // Ensure handleEdit is called
+              />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-    </div >
-  )
-}
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Ürünü Sil</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Bu ürünü silmek istediğinize emin misiniz?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>İptal</Button>
+          <Button onClick={() => deleteProduct(selectedProduct._id).then(handleClose)}>Sil</Button>
+        </DialogActions>
+      </Dialog>
+      {editMode && selectedProduct && (
+        <EditProductForm product={selectedProduct} onClose={handleEditClose} />
+      )}
+    </div>
+  );
+};

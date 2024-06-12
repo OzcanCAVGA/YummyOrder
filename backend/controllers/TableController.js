@@ -9,7 +9,7 @@ const createResponse = function (res, status, content) {
 }
 
 const addTable = async (req, res) => {
-    const { name, tableNumber, qrcode } = req.body
+    const { name, tableNumber } = req.body
 
     if (!name || !tableNumber || !qrcode) {
         createResponse(res, 400, { "hata": "Tüm alanlar doldurun." })
@@ -25,8 +25,8 @@ const addTable = async (req, res) => {
         else {
             const table = await Table.create({
                 name,
-                tableNumber,
-                qrcode,
+               tableNumber,
+                // qrcode,
             })
             createResponse(res, 201, table)
 

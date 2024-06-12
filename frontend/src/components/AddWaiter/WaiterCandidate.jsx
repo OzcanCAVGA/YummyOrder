@@ -19,8 +19,6 @@ const WaiterCandidate = ({ firstName, lastName, authority, userId }) => {
             console.error("Yetki güncellenirken hata oluştu:", error);
         }
     };
-    console.log(userAuthority)
-
 
     const authorityText = (userAuthority === 'customer') ? 'Müşteri' : 'Garson';
     const buttonText = (userAuthority === 'customer') ? 'Garson Yap' : 'Müşteri Yap';

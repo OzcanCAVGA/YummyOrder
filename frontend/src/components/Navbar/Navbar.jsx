@@ -5,7 +5,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext';
 const Navbar = () => {
-  const { loggedIn } = useAuth()
+  const { basket, loggedIn } = useAuth()
   return (
     <div className=' flex justify-between rounded-lg m-3 px-4 py-4 shadow-lg bg-white '>
       <div className="nav-logo flex items-center mx-10 justify-center gap-2">
@@ -33,7 +33,10 @@ const Navbar = () => {
           <button className='w-16 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-[#2c747e] bg-[#33b9ca]  text-white '><ContactsIcon /> </button>
         </Link>}
         {loggedIn && <Link to="/shoppingcart">
-          <button className='w-16 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-[#577E2C] bg-[#94C832]  text-white '><ShoppingCartIcon /> </button>
+          <button className='w-16 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-[#577E2C] bg-[#94C832]  text-white '>
+            <ShoppingCartIcon /> 
+            <span className='ml-1'>{basket.length}</span>
+          </button>
         </Link>}
         
       </div>

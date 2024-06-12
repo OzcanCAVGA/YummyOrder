@@ -9,8 +9,40 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useAuth } from '../../contexts/AuthContext';
 
 export const MenuCard = ({ id, name, description, category, price, images }) => {
+  const { user, basket, addBasket, deleteBasket } = useAuth();
+  const isInBasket = () => {
+    return basket.some(item => item.id === id);
+  };
+  const handleBasket = async () => {
+    if (user) {
+      if(!isInBasket()){
+        addBasket({
+          id: id,
+          name: name,
+          description: description,
+          category: category,
+          price: price,
+          images: images
+        });
+      }else{
+        deleteBasket({
+          id: id,
+          name: name,
+          description: description,
+          category: category,
+          price: price,
+          images: images
+        })
+      }
+      
+    }
+  };
+
+  
+
   return (
     <Card sx={{ maxWidth: 400 }}>
       <CardMedia
@@ -43,11 +75,12 @@ export const MenuCard = ({ id, name, description, category, price, images }) => 
         </Button>
         <Button
           size="small"
-          color="secondary"
+          style={{ backgroundColor: isInBasket() ? 'red' : '' }}
           variant="contained"
           startIcon={<ShoppingCartIcon />}
+          onClick={handleBasket}
         >
-          Add to Cart
+          Sepete Ekle
         </Button>
         <div style={{ marginLeft: 'auto' }}>
           <Button size="small" color="primary" startIcon={<RemoveIcon />}></Button>

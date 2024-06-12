@@ -7,10 +7,10 @@ import { useAuth } from '../../contexts/AuthContext.jsx';
 
 
 export const Profile = () => {
-    useContext(useAuth)
-    const { user, loggedIn } = useAuth()
-    console.log(user)
-    console.log("loggedin:::", loggedIn)
+    // useContext(useAuth)
+    // const { user, loggedIn } = useAuth()
+    // console.log(user)
+    // console.log("loggedin:::", loggedIn)
 
 
 
