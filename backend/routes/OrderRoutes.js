@@ -14,7 +14,7 @@ router
 
 
 router
-    .route("/admin/order/:tableid")
+    .route("/admin/order/createorder")
     .post(OrderController.createOrder)
 
 router

@@ -11,7 +11,7 @@ const createResponse = function (res, status, content) {
 const addTable = async (req, res) => {
     const { name, tableNumber } = req.body
 
-    if (!name || !tableNumber || !qrcode) {
+    if (!name || !tableNumber) {
         createResponse(res, 400, { "hata": "Tüm alanlar doldurun." })
         return;
     }
@@ -59,8 +59,8 @@ const updateTable = async (req, res) => {
     const tableid = req.params.tableid;
 
     // otorite yapilacak {
-    const { name, tableNumber, qrcode } = req.body
-    if (!name || !tableNumber || !qrcode) {
+    const { name, tableNumber } = req.body
+    if (!name || !tableNumber ) {
         createResponse(res, 400, { "hata": "Tüm alanlar doldurun." })
         return;
     }
@@ -69,7 +69,6 @@ const updateTable = async (req, res) => {
             const table = await Table.findById(tableid)
             table.name = name;
             table.tableNumber = tableNumber;
-            table.qrcode = qrcode
 
             try {
                 await table.save()

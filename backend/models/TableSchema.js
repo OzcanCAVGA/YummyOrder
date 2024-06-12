@@ -5,15 +5,10 @@ const Order = require('./OrderSchema')
 const TableSchema = {
 
     name: String,
-
     status: {
         type: String,
         enum: ['Boş', 'Dolu', 'Rezerv'],
         default: 'Boş',
-    },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
     },
     order: {
         type: mongoose.Schema.Types.ObjectId,

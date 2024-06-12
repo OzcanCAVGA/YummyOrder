@@ -10,17 +10,17 @@ const createResponse = function (res, status, content) {
 }
 
 const createOrder = async (req, res) => {
-    const { userid, productid } = req.body;
-    const tableid = req.params.tableid;
+    const { userid, productid, tableNumber } = req.body;
 
     try {
-        const user = await User.findById(userid)
-        const table = await Table.findById(tableid)
-        const product = await Product.findById(productid)
+        const user = await User.findById(userid);
+        const table = await Table.findOne({ tableNumber: tableNumber });
+        const product = await Product.findById(productid);
 
-        console.log("user:" + user, "table:" + table, "product:" + product)
+        console.log("user:" + user, "table:" + table, "product:" + product);
+
         if (!user || !table || !product) {
-            createResponse(res, 400, { "hata": "Sipariş oluşturulamadı." })
+            createResponse(res, 400, { "hata": "Sipariş oluşturulamadı." });
         } else {
             try {
                 const order = await Order.create({
@@ -30,18 +30,27 @@ const createOrder = async (req, res) => {
                     table: table,
                 });
 
-                console.log(order)
-                createResponse(res, 201, order)
+                const updatedTable = await Table.findOneAndUpdate(
+                    { tableNumber: tableNumber },
+                    { 
+                        status: 'Dolu',
+                        order: order._id // Order ID'yi doğrudan ekliyoruz
+                    },
+                    { new: true }
+                );
+
+                console.log(order);
+                console.log("Updated Table:", updatedTable);
+                createResponse(res, 201, order);
             } catch (error) {
-                createResponse(res, 400, { "hata": "Sipariş oluşturulamadı." })
+                createResponse(res, 400, { "hata": "Sipariş oluşturulamadı." });
             }
-
-
         }
     } catch (error) {
-        createResponse(res, 400, error)
+        createResponse(res, 400, error);
     }
-}
+};
+
 
 const deleteOrder = async (req, res) => {
     const orderid = req.params.orderid
