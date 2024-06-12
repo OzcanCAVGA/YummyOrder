@@ -8,6 +8,7 @@ import { Admin } from './pages/Admin/Admin.jsx'
 import { WaiterPanel } from './pages/Waiter/WaiterPanel.jsx'
 import { ProductDetails } from './pages/ProductDetails/ProductDetails.jsx'
 import { Profile } from './pages/Profile/Profile.jsx'
+import ShoppingCart from './pages/ShoppingCart/ShoppingCart.jsx'
 import { AuthProvider, useAuth } from './contexts/AuthContext.jsx'
 import { ListProduct } from './components/ListProduct/ListProduct.jsx'
 import NewProduct from './components/NewProduct/NewProduct.jsx'
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/shoppingcart' element={<ShoppingCart />} />
         <Route path='/product-detail/:productid' element={<ProductDetails />} />
 
 

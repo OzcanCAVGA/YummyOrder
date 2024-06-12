@@ -94,6 +94,36 @@ const loggedInUser = async (req, res) => {
     }
 };
 
+const getUsersAndWaiters = async (req, res) => {
+    try {
+        const users = await User.find({
+            $or: [
+                { authority: 'customer' },
+                { authority: 'waiter' },
+            ]
+        });
+        createResponse(res, 200, users);
+    } catch (error) {
+        createResponse(res, 400, { "hata": "musteri ve garson bulunamadi" });
+    }
+}
+
+const toggleUserAuthority = async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const user = await User.findById(userId);
+        if (!user) {
+            return createResponse(res, 404, { "hata": "Kullanıcı bulunamadı." });
+        }
+        user.authority = user.authority === 'customer' ? 'waiter' : 'customer';
+        await user.save();
+        createResponse(res, 200, { "mesaj": "Yetki başarıyla güncellendi.", user });
+    } catch (error) {
+        createResponse(res, 500, { "hata": "Sunucu hatası.", error });
+    }
+}
+
+
 
 
 const getUserById = async (req, res) => {
@@ -214,6 +244,8 @@ module.exports = {
     loggedInUser,
     getUserById,
     getAllUsers,
+    getUsersAndWaiters,
+    toggleUserAuthority,
     updateUser,
     updatePassword,
     deleteUser,

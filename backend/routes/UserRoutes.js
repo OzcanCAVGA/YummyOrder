@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var UserController = require("../controllers/UserController")
 const authenticateToken = require('../middlewares/authenticateToken')
+const authorizeAdmin = require('../middlewares/authorizeAdmin')
+
 
 router
     .route("/merhaba")
@@ -41,6 +43,12 @@ router
     .route('/users/:userid')
     .delete(authenticateToken, UserController.deleteUser)
 
+router
+    .route('/admin/users-waiters')
+    .get(authenticateToken, authorizeAdmin, UserController.getUsersAndWaiters)
 
+router
+    .route('/toggleAuthority/:userId')
+    .put(authenticateToken, authorizeAdmin, UserController.toggleUserAuthority)
 
 module.exports = router;

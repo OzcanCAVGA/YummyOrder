@@ -29,22 +29,32 @@ const getUser = async (id) => {
     return response
 }
 
-const updateUser = async(id, input)=>{
+const getUsersAndWaiters = async () => {
+    const response = await axios.get(`http://localhost:8080/api/v1/admin/users-waiters`, setAuth())
+    return response
+}
+
+const updateUser = async (id, input) => {
     const response = await axios.put(`http://localhost:8080/api/v1/users/${id}`, input, setAuth())
     return response
 }
 
-const updatePassword = async (id,input) => {
+const updatePassword = async (id, input) => {
     const response = await axios.put(`http://localhost:8080/api/v1/users/password/${id}`, input, setAuth());
     return response;
 }
+const toggleUserAuthority = async (userId) => {
+    const { data } = await axios.put(`http://localhost:8080/api/v1/toggleAuthority/${userId}`, {}, setAuth());
+    return data;
+};
 
 export {
     loginIn,
     signUp,
     getUser,
     loggedInUser,
+    getUsersAndWaiters,
     updateUser,
     updatePassword,
-
+    toggleUserAuthority
 }

@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: ['http://localhost:3000', 'http://localhost:8080'], // İzin verilen domainler
   methods: 'GET,POST,DELETE,PUT', // izin verilen HTTP metotları
   allowedHeaders: 'Content-Type,Authorization' // izin verilen başlıklar
 }));
@@ -27,7 +27,7 @@ app.use("/api/v1", OrderRoutes);
 app.use(
   '/api/v1',
   (req, res, next) => {
-    res.header('Access-Control-Allow-Origin', process.env.PORT);
+    res.header('Access-Control-Allow-Origin', '*');
     res.header(
       'Access-Control-Allow-Headers',
       'Origin, X-Requested-With, Content-Type, Accept, Authorization'

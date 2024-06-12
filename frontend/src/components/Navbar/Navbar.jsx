@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../../assets/logo.png'
 import ContactsIcon from '@mui/icons-material/Contacts';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext';
 const Navbar = () => {
@@ -29,7 +30,10 @@ const Navbar = () => {
         </Link>}
         
         {loggedIn && <Link to="/profile">
-          <button className='w-16 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-[#577E2C] bg-[#94C832]  text-white '><ContactsIcon /> </button>
+          <button className='w-16 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-[#2c747e] bg-[#33b9ca]  text-white '><ContactsIcon /> </button>
+        </Link>}
+        {loggedIn && <Link to="/shoppingcart">
+          <button className='w-16 h-8 outline-none border-[1px] rounded-lg transition duration-300 text-base  border-[#577E2C] bg-[#94C832]  text-white '><ShoppingCartIcon /> </button>
         </Link>}
         
       </div>
