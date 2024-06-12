@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { toggleUserAuthority } from '../../api/UserApi'
 import Button from '@mui/material/Button';
 import { QueryClient, useQueryClient } from 'react-query';
-
+import { useEffect } from 'react';
 
 
 const WaiterCandidate = ({ firstName, lastName, authority, userId }) => {
@@ -10,11 +10,14 @@ const WaiterCandidate = ({ firstName, lastName, authority, userId }) => {
 
 
     const [userAuthority, setUserAuthority] = useState(authority);
+
+
     const handleToggleAuthority = async () => {
         try {
-            await toggleUserAuthority(userId);
-            const updatedUser = queryClient.invalidateQueries('authority', { refetchActive: true })
-            setUserAuthority(updatedUser.authority);
+            const updatedUser = await toggleUserAuthority(userId);
+            console.log(updatedUser);
+            queryClient.invalidateQueries('authority', { refetchActive: true })
+            setUserAuthority(updatedUser.user.authority);
         } catch (error) {
             console.error("Yetki güncellenirken hata oluştu:", error);
         }

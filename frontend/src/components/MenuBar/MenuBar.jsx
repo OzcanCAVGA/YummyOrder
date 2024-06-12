@@ -3,20 +3,13 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-const buttons = [
-    <Button key="one">Kahvalti</Button>,
-    <Button key="two">Ana Yemek</Button>,
-    <Button key="three">Icecekler</Button>,
-    <Button key="four">Salatalar</Button>,
-];
-
-
-
-export const MenuBar = () => {
+export const MenuBar = ({ setCategory }) => {
+    const changeCategory = (category) => {
+        setCategory(category);
+    }
 
     return (
-        <div className=' m-auto w-9/12 mt-14'>
-
+        <div className='m-auto w-9/12 mt-14'>
             <Box
                 sx={{
                     display: 'flex',
@@ -27,12 +20,15 @@ export const MenuBar = () => {
                     },
                 }}
             >
-
-                <ButtonGroup aria-label="Medium-sized button group" sx={{color:"green"}}>
-                    {buttons}
+                <ButtonGroup aria-label="Medium-sized button group" sx={{ color: "green" }}>
+                <Button key="one" onClick={() => changeCategory("All")}>Tümü</Button>
+                    <Button key="one" onClick={() => changeCategory("Yiyecekler")}>Yiyecekler</Button>
+                    <Button key="two" onClick={() => changeCategory("Tatlilar")}>Tatlilar</Button>
+                    <Button key="three" onClick={() => changeCategory("Icecekler")}>Icecekler</Button>
+                    <Button key="four" onClick={() => changeCategory("Kahvalti Menusu")}>Kahvalti Menusu</Button>
+                    <Button key="four" onClick={() => changeCategory("Sicak Yemekler")}>Sicak Yemekler</Button>
                 </ButtonGroup>
-
             </Box>
-        </div >
+        </div>
     )
 }
