@@ -1,26 +1,38 @@
+import { Button } from '@mui/material'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 import React, { useEffect, useState } from 'react'
+import { toggleUserAuthority } from '../../api/UserApi';
 
 export const Product = ({ name, description, category, price, images }) => {
 
-    const [quantity, setQuantity] = useState(1);
-    const [newPrice, setNewPrice] = useState(price)
-
-
-    const incrementQuantity = () => {
-        setQuantity(quantity => quantity + 1)
+    const { user, basket, addBasket, deleteBasket } = toggleUserAuthority();
+    const isInBasket = () => {
+        return basket.some(item => item.id === id);
     };
-
-    const decrementQuantity = () => {
-        if (quantity > 1) {
-            setQuantity(quantity => quantity - 1)
+    const handleBasket = async () => {
+        if (user) {
+            if (!isInBasket()) {
+                addBasket({
+                    id: id,
+                    name: name,
+                    description: description,
+                    category: category,
+                    price: price,
+                    images: images
+                });
+            } else {
+                deleteBasket({
+                    id: id,
+                    name: name,
+                    description: description,
+                    category: category,
+                    price: price,
+                    images: images
+                })
+            }
         }
-    }
-
-    useEffect(() => {
-        setNewPrice(price * quantity)
-
-    }, [quantity])
-
+    };
 
 
     return (
@@ -30,12 +42,16 @@ export const Product = ({ name, description, category, price, images }) => {
             <img className='rounded-xl my-5 ' src={images} alt="" />
             <p className='shadow-sm'> {description}</p>
             <div className='flex items-center  pt-5'>
-                <h3 className=' text-4xl'>{newPrice}₺</h3>
-                <div className="flex items-center px-5">
-                    <button className='bg-[#46731A] p-2 rounded-s-full text-white text-xl' onClick={decrementQuantity}>-</button>
-                    <span className="px-5 text-xl ">{quantity}</span>
-                    <button className='bg-[#46731A]  text-white p-2 rounded-e-full text-xl' onClick={incrementQuantity}>+</button>
-                </div>
+                <h3 className=' text-4xl'>{price}₺</h3>
+                <Button
+                    size="small"
+                    style={{ backgroundColor: isInBasket() ? 'red' : '' }}
+                    variant="contained"
+                    startIcon={<ShoppingCartIcon />}
+                    onClick={handleBasket}
+                >
+                    Sepete Ekle
+                </Button>
             </div>
         </>
     )

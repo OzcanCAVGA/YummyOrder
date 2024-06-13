@@ -30,9 +30,7 @@ const updateProduct = async (productid, values) => {
 }
 
 const addProduct = async (input) => {
-    console.log("ProductApiideyimm")
     const { data } = await axios.post(`http://localhost:8080/api/v1/admin/products/addproduct`, input, setAuth())
-    console.log("addproductAPI INPUT", input)
     return data;
 }
 const deleteProduct = async (productid) => {

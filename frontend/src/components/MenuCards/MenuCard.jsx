@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import { useAuth } from '../../contexts/AuthContext';
 
 export const MenuCard = ({ id, name, description, category, price, images }) => {
@@ -18,7 +19,7 @@ export const MenuCard = ({ id, name, description, category, price, images }) => 
   };
   const handleBasket = async () => {
     if (user) {
-      if(!isInBasket()){
+      if (!isInBasket()) {
         addBasket({
           id: id,
           name: name,
@@ -27,7 +28,7 @@ export const MenuCard = ({ id, name, description, category, price, images }) => 
           price: price,
           images: images
         });
-      }else{
+      } else {
         deleteBasket({
           id: id,
           name: name,
@@ -37,41 +38,45 @@ export const MenuCard = ({ id, name, description, category, price, images }) => 
           images: images
         })
       }
-      
+
     }
   };
 
-  
+
 
   return (
-    <Card sx={{ maxWidth: 400 }}>
+    <Card sx={{ maxWidth: 300, minWidth: 300, maxHeight: 500 }}>
       <CardMedia
+        sx={{ maxHeight: 200, minHeight: 200 }}
         component="img"
         height="200"
+        min-width="200"
         image={images}
         alt={name}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {name}
+        <Typography variant="body2" color="text.secondary" mt={2}>
+          Kategori: <span className='text-black font-bold italic font-sans '>{category}</span>
+        </Typography>
+        <Typography gutterBottom variant="h5" component="div" >
+          <span className='text-3xl mt-14'>{name} </span>
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
-        <Typography variant="body2" color="text.secondary" mt={2}>
-          Category: {category}
-        </Typography>
+
       </CardContent>
       <CardActions>
         <Button
+          sx={{ paddingLeft: 2 }}
           size="small"
           color="primary"
           variant="contained"
-          startIcon={<ShoppingCartIcon />}
+          startIcon={<FullscreenIcon />}
           component={Link}
           to={`/product-detail/${id}`}
         >
-          View Details
+          Ürün Detayları
         </Button>
         <Button
           size="small"
@@ -82,11 +87,7 @@ export const MenuCard = ({ id, name, description, category, price, images }) => 
         >
           Sepete Ekle
         </Button>
-        <div style={{ marginLeft: 'auto' }}>
-          <Button size="small" color="primary" startIcon={<RemoveIcon />}></Button>
-          <Button size="small" color="primary">1</Button>
-          <Button size="small" color="primary" startIcon={<AddIcon />}></Button>
-        </div>
+
       </CardActions>
     </Card>
   );

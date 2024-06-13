@@ -2,19 +2,21 @@ const express = require('express');
 const router = express.Router();
 const tableControler = require("../controllers/TableController")
 const TableSchema = require('../models/TableSchema');
+const authenticateToken = require('../middlewares/authenticateToken');
+const authorizeAdmin = require('../middlewares/authorizeAdmin');
 
 router
     .route("/admin/tables/addTable")
-    .post(tableControler.addTable)
+    .post(authenticateToken, authorizeAdmin, tableControler.addTable)
 
 router
     .route("/admin/tables/")
-    .get(tableControler.getAllTables)
+    .get(authenticateToken, authorizeAdmin, tableControler.getAllTables)
 
 
 router
     .route("/admin/tables/:tableid")
-    .get(tableControler.getTableById)
+    .get(authenticateToken, tableControler.getTableById)
 
 
 router
