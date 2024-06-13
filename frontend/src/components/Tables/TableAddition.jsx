@@ -39,6 +39,7 @@ export const TableAddition = () => {
                     id="name"
                     name="name"
                     label="Masa Adı"
+                    className='bg-white'
                     type='text'
                     placeholder="İlber Ortaylı"
                     sx={{ width: '30vw' }}
@@ -53,6 +54,7 @@ export const TableAddition = () => {
                     id="tableNumber"
                     name='tableNumber'
                     label="Masa Numarası"
+                    className='bg-white'
                     placeholder="1"
                     sx={{ width: '30vw' }}
                     value={formik.values.tableNumber}
