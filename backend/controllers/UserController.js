@@ -9,11 +9,6 @@ const createResponse = function (res, status, content) {
         .status(status)
         .json(content);
 }
-const merhaba = (req, res) => {
-    getResponse(res, 200, { "mesaj": "123" })
-    return;
-}
-
 
 const register = async (req, res) => {
 
