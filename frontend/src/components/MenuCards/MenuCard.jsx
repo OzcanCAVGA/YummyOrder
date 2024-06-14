@@ -67,7 +67,7 @@ export const MenuCard = ({ id, name, description, category, price, images }) => 
 
       </CardContent>
       <CardActions>
-        <Button
+        {/* <Button
           sx={{ paddingLeft: 2 }}
           size="small"
           color="primary"
@@ -77,7 +77,7 @@ export const MenuCard = ({ id, name, description, category, price, images }) => 
           to={`/product-detail/${id}`}
         >
           Ürün Detayları
-        </Button>
+        </Button> */}
         <Button
           size="small"
           style={{ backgroundColor: isInBasket() ? 'red' : '' }}

@@ -5,7 +5,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { Product } from './Product';
 import { useParams } from 'react-router-dom'
-import { getProduct } from '../../api/ProductApi';
+import { getProductById } from '../../api/ProductApi';
 import { useQuery } from 'react-query';
 
 
@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export const ProductDetails = () => {
     const { productid } = useParams();
 
-    const { isLoading, error, data } = useQuery(["productDetails", productid], () => getProduct(productid))
+    const { isLoading, error, data } = useQuery(["productDetails", productid], () => getProductById(productid))
     if (isLoading) {
         return <div>Loading...</div>;
     }

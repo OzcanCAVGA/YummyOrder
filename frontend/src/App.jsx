@@ -17,7 +17,7 @@ import { AccountSettings } from './components/AccountSettings/AccountSettings.js
 import { OrderHistory } from './components/OrderHistory/OrderHistory.jsx'
 import { TableOverview } from './components/Tables/TableOverview.jsx'
 import { TableAddition } from './components/Tables/TableAddition.jsx'
-import { TableEdit } from './components/Tables/TableEdit.jsx'
+ // import { TableEdit } from './components/Tables/TableEdit.jsx'
 
 
 
@@ -40,17 +40,15 @@ const App = () => {
           <Route path='admin' element={<Admin />} >
             <Route path='product-list' element={<ListProduct />} />
             <Route path='product-new' element={<NewProduct />} />
-            <Route path='waiter-list' element={<AddWaiter />} />
             <Route path='waiter-new' element={<AddWaiter />} />
             <Route path='tables-list' element={<TableOverview />} />
             <Route path='table-new' element={<TableAddition />} />
-            <Route path='table-edit' element={<TableEdit />} />
+            {/* <Route path='table-edit' element={<TableEdit />} /> */}
           </Route>
         </Route>
 
 
 
-        //TODO: YAPIYI PİECENTRALDAKİ GİBİ KURACAKSIN İÇ İÇE SONRA SAYFA YENİLEMEYİ DENE
         <Route path="/" element={<ProtectedRoutes />}>
           <Route path='profile' element={<Profile />} >
             <Route path='account-settings' element={<AccountSettings />} />
@@ -60,7 +58,7 @@ const App = () => {
         </Route>
 
         <Route path='/' element={<ProtectedWaiterRoutes />}>
-          <Route path='/waiter' element={<WaiterPanel />} >
+          <Route path='waiter' element={<WaiterPanel />} >
             <Route path='tables-list' element={<TableOverview />} />
 
           </Route>

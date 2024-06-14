@@ -55,7 +55,7 @@ export const TableCart = ({ table }) => {
   return (
     <Card >
       <CardActionArea onClick={handleOpen}>
-        <CardContent sx={{ maxWidth: 250, maxHeight: 200, height: 200, width: 250, background: (table.status === 'empty' ? 'white' : table.status === 'occupied' ? 'green' : 'red') }}>
+        <CardContent sx={{ maxWidth: 250, maxHeight: 200, height: 200, width: 250, background: (table.status === 'Boş' ? 'white' : table.status === 'Dolu' ? 'green' : 'red') }}>
           <Typography sx={{ fontSize: 15 }} color="text.secondary" glutterBottom>{table.status}</Typography>
           <Typography variant='h5' component="div" >{table.name}</Typography>
         </CardContent>

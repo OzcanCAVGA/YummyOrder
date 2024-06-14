@@ -23,9 +23,7 @@ const Sidebar = () => {
                 <li className={`px-6 py-3 ${getActiveClass('/product-new')}`}>
                     <Link to="product-new">Ürün ekle</Link>
                 </li>
-                <li className="px-6 py-3">
-                    <Link to="waiter-list">Garson listele</Link>
-                </li>
+
                 <li className="px-6 py-3">
                     <Link to="waiter-new">Garson ekle</Link>
                 </li>
@@ -35,12 +33,7 @@ const Sidebar = () => {
                 <li className="px-6 py-3">
                     <Link to="table-new">Masa ekle</Link>
                 </li>
-                <li className="px-6 py-3">
-                    <Link to="table-edit">Masa düzenle</Link>
-                </li>
-                {/* <li className="px-6 py-3">
-                    <Link to="/view-tatistics">İstatistikleri gör</Link>
-                </li> */}
+
             </ul>
         </div>
     );

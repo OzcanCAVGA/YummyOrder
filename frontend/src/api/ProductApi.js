@@ -24,6 +24,12 @@ const getProduct = async (productid) => {
 
 }
 
+const getProductById = async (productid) => {
+    const { data } = await axios.get(`http://localhost:8080/api/v1/products/product-detail/id/${productid}`);
+    return data;
+
+}
+
 const updateProduct = async (productid, values) => {
     const { data } = await axios.put(`http://localhost:8080/api/v1/admin/products/${productid}`, values, setAuth());
     return data;
@@ -45,6 +51,7 @@ export {
     getAllProductsAdmin,
     updateProduct,
     addProduct,
-    deleteProduct
+    deleteProduct,
+    getProductById
 
 }

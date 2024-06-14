@@ -29,8 +29,8 @@ function ShoppingCardComponent({id,name, description, category, price, images}) 
             <Typography variant="body1" gutterBottom>
               {price}
             </Typography>
-            <Button variant="outlined" color="secondary" onClick={handleDeleteBasket}>
-              Remove
+            <Button variant="outlined" color="secondary" onClick={handleDeleteBasket} sx={{color: `red`}}>
+              Kaldır
             </Button>
           </Paper>
         </Grid>

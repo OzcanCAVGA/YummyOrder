@@ -19,7 +19,7 @@ export const Menu = ({category}) => {
 
     return (
         <div className='flex justify-center w-8/12 m-auto mt-16 mb-16'>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-700 w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-700 w-full ">
                 {data.map((item => {
                     if(item.category == category || category == "All"){
                         return (<MenuCard key={item._id} id={item._id} name={item.name} description={item.description} category={item.category} price={item.price} images = {item.images}/>)

@@ -26,7 +26,7 @@ router
     .get(productController.searchProducts)
 
 router
-    .route("/products/product-detail/:productid")
+    .route("/products/product-detail/id/:productid")
     .get(productController.getProductById)
 
 router

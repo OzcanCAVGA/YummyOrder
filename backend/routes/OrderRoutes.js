@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const OrderController = require("../controllers/OrderController")
+const authenticateToken = require('../middlewares/authenticateToken')
 const OrderSchema = require('../models/OrderSchema');
 
 router
@@ -9,13 +10,13 @@ router
 
 
 router
-    .route("/admin/order/view/:orderid")
-    .get(OrderController.getOrder)
+    .route("/order/getOrder")
+    .get(authenticateToken, OrderController.getOrder)
 
 
 router
     .route("/admin/order/createorder")
-    .post(OrderController.createOrder)
+    .post(authenticateToken, OrderController.createOrder)
 
 router
     .route("/admin/order/:orderid")

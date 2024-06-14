@@ -1,42 +1,24 @@
 import React from 'react'
 import { TableCart } from './TableCart'
+import { getAllTables } from '../../api/TableApi'
+import {useQuery} from 'react-query'
 
-const tables = [
-    {
-        "id": 1,
-        "name": "Celal Şengör",
-        "status": "empty"
-    },
-    {
-        "id": 2,
-        "name": "Table 2",
-        "status": "occupied"
-    },
-    {
-        "id": 3,
-        "name": "Table 3",
-        "status": "empty"
-    },
-    {
-        "id": 4,
-        "name": "Table 4",
-        "status": "reserved"
-    },
-    {
-        "id": 5,
-        "name": "Table 5",
-        "status": "empty"
-    }
-]
-// pages -> Admin -> Admin ->
-// TableOverview -> TableCart -> TableOrders
-// TableAddition 
-// TableEdit
+
 
 export const TableOverview = () => {
+
+    const {isLoading, error, data} = useQuery(['tables'], ()=> getAllTables())
+    if (isLoading) {
+        return 'Yükleniyor';
+      }
+      if (error) return 'Hata!' + error.message;
+    
+      console.log(data)
+
+
     return (
         <div className='flex gap-3 max-w-screen-lg flex-wrap'> {
-            tables.map(table => (
+            data.map(table => (
                 <TableCart table={table} />
             ))
         } </div>

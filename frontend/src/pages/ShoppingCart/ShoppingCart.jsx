@@ -40,7 +40,7 @@ const ShoppingCart = () => {
   return (
     <Container maxWidth="md" style={{ marginTop: 80 }}>
       <Typography variant="h4" gutterBottom>
-        Shopping Cart
+        Sepet 
       </Typography>
       <Grid container spacing={2}>
         {basket.map((item, index) => (
@@ -75,7 +75,7 @@ const ShoppingCart = () => {
       </div>
       <div style={{ marginTop: 30 }}>
         <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Checkout
+          İşlemi Tamamla
         </Button>
       </div>
     </Container>

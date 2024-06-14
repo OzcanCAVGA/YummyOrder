@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
-import {ChangePassword} from './ChangePassword';
+import { ChangePassword } from './ChangePassword';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import { useAuth } from '../../contexts/AuthContext';
@@ -136,16 +136,16 @@ export const AccountSettings = () => {
             </div>
 
             <Grid container spacing={2} justifyContent="space-between">
-              <Grid item>
+              {/* <Grid item>
                 <IconButton onClick={handleEditOpen}>
                   <Button variant="contained" startIcon={<EditIcon />} sx={{ fontWeight: 600 }}>
                     Şifreyi Değiştir
+                    <ChangePassword open={editOpen} onClose={handleEditClose} />
                   </Button>
                 </IconButton>
-                <ChangePassword open={editOpen} onClose={handleEditClose} />
-              </Grid>
+              </Grid> */}
 
-              <Grid item>
+              <Grid item sx={{marginTop: 5}}>
                 <Button type="submit" variant="contained" startIcon={<EditIcon />} sx={{ fontWeight: 600, backgroundColor: "green" }}>
                   Kaydet
                 </Button>

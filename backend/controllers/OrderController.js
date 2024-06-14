@@ -32,7 +32,7 @@ const createOrder = async (req, res) => {
 
                 const updatedTable = await Table.findOneAndUpdate(
                     { tableNumber: tableNumber },
-                    { 
+                    {
                         status: 'Dolu',
                         order: order._id // Order ID'yi doğrudan ekliyoruz
                     },
@@ -97,22 +97,21 @@ const updateOrderStatus = async (req, res) => {
 }
 
 const getOrder = async (req, res) => {
-    const orderid = req.params.orderid;
+    const userId = req.auth.userId;
 
     try {
-        const order = await Order.findById(orderid)
-        console.log(order)
-        if (!order) {
-            createResponse(res, 404, { "hata": "Sipariş bulunamadı" })
-        } else {
-            createResponse(res, 200, order)
-        }
+        const orders = await Order.find({ user: userId });
+        console.log(orders);
 
-        createResponse(res, 200, order)
+        if (orders.length === 0) {
+            createResponse(res, 404, { "hata": "Sipariş bulunamadı" });
+        } else {
+            createResponse(res, 200, orders);
+        }
     } catch (error) {
-        createResponse(res, 400, error)
+        createResponse(res, 400, { "hata": error.message });
     }
-}
+};
 
 const getAllOrders = async (req, res) => {
     try {

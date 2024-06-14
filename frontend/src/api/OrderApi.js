@@ -9,9 +9,18 @@ const setAuth = () => {
 }
 // http://localhost:8080/api/v1/admin/order/createorder
 const addOrder = async (input) => {
-    const { data } = await axios.post(`http://localhost:8080/api/v1/admin/order/createorder`, input)
+    const { data } = await axios.post(`http://localhost:8080/api/v1/admin/order/createorder`, input, setAuth())
     return data;
 }
-export{
-    addOrder
+
+const getOrder = async () => {
+    const { data } = await axios.get('http://localhost:8080/api/v1/order/getOrder', setAuth())
+    return data;
+}
+
+
+
+export {
+    addOrder,
+    getOrder
 }

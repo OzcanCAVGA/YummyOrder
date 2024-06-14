@@ -20,8 +20,8 @@ export const MenuBar = ({ setCategory }) => {
                     },
                 }}
             >
-                <ButtonGroup aria-label="Medium-sized button group" sx={{ color: "green" }}>
-                <Button key="one" onClick={() => changeCategory("All")}>Tümü</Button>
+                <ButtonGroup aria-label="Medium-sized button group" sx={{ color: "green", background:"white" }}>
+                    <Button key="one" onClick={() => changeCategory("All")}>Tümü</Button>
                     <Button key="one" onClick={() => changeCategory("Yiyecekler")}>Yiyecekler</Button>
                     <Button key="two" onClick={() => changeCategory("Tatlilar")}>Tatlilar</Button>
                     <Button key="three" onClick={() => changeCategory("Icecekler")}>Icecekler</Button>

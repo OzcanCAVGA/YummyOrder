@@ -6,7 +6,7 @@ import { ListWaiter } from '../../components/ListWaiter/ListWaiter.jsx';
 import { TableOverview } from '../../components/Tables/TableOverview.jsx';
 import { TableAddition } from '../../components/Tables/TableAddition.jsx';
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
-import { TableEdit } from '../../components/Tables/TableEdit.jsx';
+// import { TableEdit } from '../../components/Tables/TableEdit.jsx';
 import { Outlet } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext.jsx';
 
