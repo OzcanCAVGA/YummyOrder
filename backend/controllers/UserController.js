@@ -233,7 +233,7 @@ const deleteUser = async (req, res) => {
 }
 
 module.exports = {
-    merhaba,
+    
     register,
     login,
     loggedInUser,

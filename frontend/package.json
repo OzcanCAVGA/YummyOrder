@@ -12,6 +12,7 @@
     "tw:build": "NODE_ENV=production tailwindcss build ./src/styles/index.css -o ./src/styles/tailwind.css"
   },
   "dependencies": {
+    "@fontsource/shadows-into-light": "^5.0.19",
     "@mui/material": "^5.15.13",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "antd": "^5.15.3",

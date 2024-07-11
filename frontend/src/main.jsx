@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext.jsx'
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools'
+import '@fontsource/poppins';
+
 
 const queryClient = new QueryClient()
 

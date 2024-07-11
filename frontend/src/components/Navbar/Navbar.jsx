@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 const Navbar = () => {
   const { basket, loggedIn, user } = useAuth()
   return (
-    <div className=' flex justify-between rounded-lg m-3 px-4 py-4 shadow-lg bg-white '>
+    <div className='flex overflow-hidden justify-between rounded-lg m-3 px-4 py-4 shadow-lg bg-white '>
       <div className="nav-logo flex items-center mx-10 justify-center gap-2">
         <Link to="/">
           <img className='h-12' src={logo} alt="" />

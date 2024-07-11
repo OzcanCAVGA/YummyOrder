@@ -5,9 +5,6 @@ const authenticateToken = require('../middlewares/authenticateToken')
 const authorizeAdmin = require('../middlewares/authorizeAdmin')
 
 
-router
-    .route("/merhaba")
-    .get(UserController.merhaba);
 
 router
     .route('/signup')

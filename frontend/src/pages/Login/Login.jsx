@@ -24,8 +24,8 @@ export const Login = () => {
     })
 
     return (
-        <div className="flex justify-center items-center h-screen ">
-            <div className="container mx-auto max-w-80">
+        <div className="flex items-center justify-center h-[70vh] w-screen">
+            <div className="rounded-lg m-3 px-4 py-4 shadow-lg bg-white w-1/3">
                 <h2 className="text-2xl font-bold mb-4">Giriş Yap</h2>
                 {/* {error && <div className="text-red-500 mb-4">{error}</div>} */}
                 <form onSubmit={handleSubmit}>
@@ -40,7 +40,7 @@ export const Login = () => {
                             handleBlur={handleBlur}
                             value={values.email}
                             className="border
-                        border-gray-400 rounded-md py-2 px-4 w-full" />
+                        border-gray-400 rounded-md py-2 px-4 w-full text-gray-700 font-sans" />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="password" className="block mb-2">Şifre</label>
@@ -53,9 +53,9 @@ export const Login = () => {
                             handleBlur={handleBlur}
                             value={values.password}
                             className="border
-                        border-gray-400 rounded-md py-2 px-4 w-full" />
+                        border-gray-400 rounded-md py-2 px-4 w-full text-gray-700 font-sans" />
                     </div>
-                    <button type="submit" className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Giriş Yap</button>
+                    <button type="submit" className=" bg-green-500 text-white py-2 px-4 rounded-md transatio hover:bg-green-600 ease-out duration-300">Giriş Yap</button>
                 </form>
             </div>
         </div>
